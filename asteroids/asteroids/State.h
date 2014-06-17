@@ -1,0 +1,19 @@
+#pragma once
+
+class State
+{
+public:
+	virtual void Init() = 0;
+	virtual void Cleanup() = 0;
+
+	virtual void Pause() = 0;
+	virtual void Resume() = 0;
+
+	virtual void Update(float pf_deltaTime) = 0;
+	virtual void Draw() = 0;
+
+	std::string ms_statename;
+
+private:
+	
+};
