@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Engine.h"
 #include "StateManager.h"
+#include "GameObjectManager.h"
 #include "MenuState.h"
 #include "GameState.h"
 #include "PauseState.h"
@@ -21,12 +22,18 @@ void Engine::initialize()
 {
 	std::cout << "Program start" << std::endl;
 	m_window = new sf::RenderWindow(sf::VideoMode(1200, 900), "Asteroids");
+
+	sf::Vector2u size = m_window->getSize();
+	unsigned int width = size.x;
+	unsigned int height = size.y;
 	mi_newstate = 0;
 }
 
 void Engine::run()
 {
 	sf::Clock timer;
+
+	GameObjectManager m_Gameobjectmanager = GameObjectManager(m_window);
 
 	StateManager sm_Statemanager = StateManager();
 

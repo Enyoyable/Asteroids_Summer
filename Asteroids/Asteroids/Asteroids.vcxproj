@@ -84,6 +84,7 @@
   <ItemGroup>
     <ClCompile Include="EndState.cpp" />
     <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuState.cpp" />
@@ -93,6 +94,7 @@
   <ItemGroup>
     <ClInclude Include="EndState.h" />
     <ClInclude Include="Engine.h" />
+    <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="PauseState.h" />
