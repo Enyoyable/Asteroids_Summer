@@ -1,5 +1,4 @@
 #include "GameObjectManager.h"
-//#include "GameObject.h"
 
 GameObjectManager::GameObjectManager(sf::RenderWindow *p_window)
 {
