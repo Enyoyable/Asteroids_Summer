@@ -82,6 +82,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DrawManager.cpp" />
     <ClCompile Include="EndState.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -90,9 +91,11 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="PauseState.cpp" />
+    <ClCompile Include="PlayerObject.cpp" />
     <ClCompile Include="StateManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DrawManager.h" />
     <ClInclude Include="EndState.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="GameObject.h" />
@@ -100,6 +103,7 @@
     <ClInclude Include="GameState.h" />
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="PauseState.h" />
+    <ClInclude Include="PlayerObject.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateManager.h" />
     <ClInclude Include="stdafx.h" />

@@ -14,6 +14,8 @@ void GameState::Init()
 {
 	std::cout << "Initialized ";
 	std::cout << ms_statename << std::endl;
+
+
 }
 
 void GameState::Cleanup()

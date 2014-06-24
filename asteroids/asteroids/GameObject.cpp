@@ -2,7 +2,7 @@
 
 #include "GameObject.h"
 
-GameObject::GameObject(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, sf::Sprite *p_Sprite = nullptr)
+GameObject::GameObject(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, sf::Sprite *p_Sprite)
 {
 	m_Sprite = p_Sprite;
 

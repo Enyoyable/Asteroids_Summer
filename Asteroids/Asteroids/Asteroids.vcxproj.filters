@@ -39,8 +39,14 @@
     <ClCompile Include="GameObjectManager.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="DrawManager.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
     <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerObject.cpp">
+      <Filter>Header Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -71,8 +77,14 @@
     <ClInclude Include="GameObjectManager.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="DrawManager.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
     <ClInclude Include="GameObject.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerObject.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

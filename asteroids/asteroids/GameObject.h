@@ -21,7 +21,7 @@ public:
 	//void setType(EObjectType pe_ObjectType);
 	//EObjectType getType();
 
-	void HandleCollision(GameObject *p_GameObject);
+	virtual void HandleCollision(GameObject *p_GameObject);
 
 private:
 	sf::Sprite *m_Sprite;
