@@ -42,5 +42,8 @@ void GameState::Update(float pf_deltaTime)
 
 void GameState::Draw()
 {
-
+	for (auto vGameObjects : mv_GameObjects)
+	{
+		
+	}
 }

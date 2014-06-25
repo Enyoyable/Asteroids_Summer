@@ -11,12 +11,12 @@ StateManager::StateManager()
 void StateManager::AddState(State *newstate)
 {
 	//set to go "Menu, Game, Pause, End"
-	states.push_back(newstate);
+	mv_states.push_back(newstate);
 }
 
 void StateManager::Init()
 {
-	ms_currentState = states[mi_statenum];
+	ms_currentState = mv_states[mi_statenum];
 	ms_currentState->Init();
 }
 
@@ -36,7 +36,7 @@ void StateManager::Update(float pf_deltatime, int pi_newstatenum)
 
 void StateManager::Draw()
 {
-
+	ms_currentState->Draw();
 }
 void StateManager::Cleanup()
 {

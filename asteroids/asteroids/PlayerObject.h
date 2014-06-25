@@ -23,4 +23,5 @@ private:
 	sf::Sprite *m_Sprite;
 
 	sf::Vector2f mv2f_Size;
+	sf::Vector2f mv2f_Pos;
 };

@@ -1,5 +1,7 @@
 #pragma once
 
+class GameObject;
+
 class State
 {
 public:
@@ -14,6 +16,6 @@ public:
 
 	std::string ms_statename;
 
-private:
-	
+protected:
+	std::vector<GameObject*> mv_GameObjects;
 };

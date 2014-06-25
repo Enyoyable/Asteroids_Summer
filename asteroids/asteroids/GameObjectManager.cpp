@@ -12,7 +12,10 @@ void GameObjectManager::updateObjects(std::vector<GameObject*> *pv_Objects, floa
 
 void GameObjectManager::drawObjects(std::vector<GameObject*> *pv_Objects)
 {
-
+	for (auto object : *pv_Objects)
+	{
+		m_window->draw(*object);
+	}
 }
 
 void GameObjectManager::removeObject(std::vector<GameObject*> *pv_Objects, GameObject *p_Object)

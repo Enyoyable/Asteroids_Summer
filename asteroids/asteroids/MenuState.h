@@ -19,8 +19,6 @@ public:
 	void quit();
 	void Draw();
 
-
-
 private:
 
 };

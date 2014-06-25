@@ -21,7 +21,7 @@ public:
 
 private:
 
-	std::vector<State*> states;
+	std::vector<State*> mv_states;
 
 	bool mb_running;
 	
