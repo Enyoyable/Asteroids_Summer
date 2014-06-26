@@ -7,7 +7,7 @@ class MenuState : public State
 {
 public:
 
-	MenuState();
+	MenuState(GameObjectManager *p_GameObjectManager, StateManager *p_StateManager, SpriteManager *p_SpriteManager, CollisionManager *p_CollisionManager, Engine *p_Engine);
 
 	void Init();
 	void Update(float pf_deltaTime);

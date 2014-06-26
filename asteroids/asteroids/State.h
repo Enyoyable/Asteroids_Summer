@@ -1,6 +1,11 @@
 #pragma once
 
 class GameObject;
+class GameObjectManager;
+class StateManager;
+class SpriteManager;
+class CollisionManager;
+class Engine;
 
 class State
 {
@@ -18,4 +23,14 @@ public:
 
 protected:
 	std::vector<GameObject*> mv_GameObjects;
+
+	GameObjectManager *m_GameObjectManager;
+
+	StateManager *m_StateManager;
+
+	SpriteManager *m_SpriteManager;
+
+	CollisionManager *m_CollisionManager;
+
+	Engine *m_Engine;
 };

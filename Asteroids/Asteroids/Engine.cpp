@@ -3,6 +3,8 @@
 #include "Engine.h"
 #include "StateManager.h"
 #include "GameObjectManager.h"
+#include "CollisionManager.h"
+#include "SpriteManager.h"
 #include "MenuState.h"
 #include "GameState.h"
 #include "PauseState.h"
@@ -33,16 +35,20 @@ void Engine::run()
 {
 	sf::Clock timer;
 
-	GameObjectManager m_Gameobjectmanager = GameObjectManager(m_window);
+	GameObjectManager *m_Gameobjectmanager = new GameObjectManager(m_window);
 
-	StateManager sm_Statemanager = StateManager();
+	StateManager *sm_Statemanager = new StateManager();
 
-	sm_Statemanager.AddState(new MenuState());
-	sm_Statemanager.AddState(new GameState());
-	sm_Statemanager.AddState(new PauseState());
-	sm_Statemanager.AddState(new EndState());
+	CollisionManager *m_CollisionManager = new CollisionManager();
 
-	sm_Statemanager.Init();
+	SpriteManager m_SpriteManager = SpriteManager("../resources/sprites/");
+
+	sm_Statemanager->AddState(new MenuState(m_Gameobjectmanager, sm_Statemanager, &m_SpriteManager, m_CollisionManager, this));
+	sm_Statemanager->AddState(new GameState(m_Gameobjectmanager, sm_Statemanager, &m_SpriteManager, m_CollisionManager, this));
+	sm_Statemanager->AddState(new PauseState(m_Gameobjectmanager, sm_Statemanager, &m_SpriteManager, m_CollisionManager, this));
+	sm_Statemanager->AddState(new EndState(m_Gameobjectmanager, sm_Statemanager, &m_SpriteManager, m_CollisionManager, this));
+
+	sm_Statemanager->Init();
 
 	while (m_window->isOpen())
 	{
@@ -51,8 +57,8 @@ void Engine::run()
 		if (fDeltaTime > 0.1)
 			fDeltaTime = 0.1;
 
-		sm_Statemanager.Update(fDeltaTime, mi_newstate);
-		sm_Statemanager.Draw();
+		sm_Statemanager->Update(fDeltaTime, mi_newstate);
+		sm_Statemanager->Draw();
 
 		sf::Event event;
 
@@ -81,8 +87,8 @@ void Engine::run()
 
 			if (event.type == sf::Event::Closed)
 			{
-				sm_Statemanager.Cleanup();
-				sm_Statemanager.Quit();
+				sm_Statemanager->Cleanup();
+				sm_Statemanager->Quit();
 				m_window->close();
 			}
 		}

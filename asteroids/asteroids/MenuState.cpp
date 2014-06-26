@@ -5,8 +5,14 @@
 #include "State.h"
 #include <iostream>
 
-MenuState::MenuState()
+MenuState::MenuState(GameObjectManager *p_GameObjectManager, StateManager *p_StateManager, SpriteManager *p_SpriteManager, CollisionManager *p_CollisionManager, Engine *p_Engine)
 {
+	m_GameObjectManager = p_GameObjectManager;
+	m_StateManager = p_StateManager;
+	m_SpriteManager = p_SpriteManager;
+	m_CollisionManager = p_CollisionManager;
+	m_Engine = p_Engine;
+
 	ms_statename = "MenuState";
 }
 
