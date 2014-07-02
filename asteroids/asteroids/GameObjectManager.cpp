@@ -1,4 +1,5 @@
 #include "GameObjectManager.h"
+#include <iostream>
 
 GameObjectManager::GameObjectManager(sf::RenderWindow *p_window)
 {
@@ -7,14 +8,21 @@ GameObjectManager::GameObjectManager(sf::RenderWindow *p_window)
 
 void GameObjectManager::updateObjects(std::vector<GameObject*> *pv_Objects, float pf_DeltaTime)
 {
-
+	for (auto object : *pv_Objects)
+	{
+		object->update(pf_DeltaTime);
+	}
 }
 
 void GameObjectManager::drawObjects(std::vector<GameObject*> *pv_Objects)
 {
 	for (auto object : *pv_Objects)
 	{
-		m_window->draw(*object);
+		if (object->getSprite() != nullptr)
+		{
+			//std::cout << object->getSprite()->getTextureRect().height << " " << object->getSprite()->getTextureRect().width << std::endl;
+			m_window->draw(*object);
+		}
 	}
 }
 

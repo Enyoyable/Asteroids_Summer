@@ -3,6 +3,8 @@
 #include "stdafx.h"
 #include "State.h"
 
+class PlayerObject;
+
 class GameState : public State
 {
 public:
@@ -20,5 +22,7 @@ public:
 	void Draw();
 
 private:
+
+	PlayerObject *m_Player;
 
 };

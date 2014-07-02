@@ -15,18 +15,15 @@ public:
 	void setSprite(sf::Sprite *p_Sprite);
 	sf::Sprite *getSprite();
 
-	void setSize(sf::Vector2f pv2f_Size);
-	sf::Vector2f getSize();
-
 	//void setType(EObjectType pe_ObjectType);
 	//EObjectType getType();
 
 	virtual void HandleCollision(GameObject *p_GameObject);
 
-private:
+protected:
 	sf::Sprite *m_Sprite;
-
 	sf::Vector2f mv2f_Size;
+
 
 	bool mb_HasAnimation;
 };

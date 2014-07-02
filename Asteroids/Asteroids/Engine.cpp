@@ -57,8 +57,7 @@ void Engine::run()
 		if (fDeltaTime > 0.1)
 			fDeltaTime = 0.1;
 
-		sm_Statemanager->Update(fDeltaTime, mi_newstate);
-		sm_Statemanager->Draw();
+		
 
 		sf::Event event;
 
@@ -92,7 +91,13 @@ void Engine::run()
 				m_window->close();
 			}
 		}
+		
+		sm_Statemanager->Update(fDeltaTime, mi_newstate);
+
 		m_window->clear();
+
+		sm_Statemanager->Draw();
+
 		m_window->display();
 	}
 }
