@@ -27,7 +27,7 @@ void GameState::Init()
 	std::cout << "Initialized ";
 	std::cout << ms_statename << std::endl;
 
-	m_Player = new PlayerObject(sf::Vector2f(100.0f, 100.0f), sf::Vector2f(32.0f, 32.0f), m_SpriteManager->loadSprite("player.png", 0,0,32,32));
+	m_Player = new PlayerObject(sf::Vector2f(m_Engine->m_window->getSize().x/2, m_Engine->m_window->getSize().y/2), sf::Vector2f(32.0f, 32.0f), m_SpriteManager->loadSprite("player.png", 0, 0, 32, 32));
 	mv_GameObjects.push_back(m_Player);
 }
 

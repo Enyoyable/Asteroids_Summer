@@ -17,7 +17,7 @@ GameObject::GameObject(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, sf::S
 
 void GameObject::update(float pf_deltaTime)
 {
-
+	
 }
 
 void GameObject::draw(sf::RenderTarget& target, sf::RenderStates states) const
