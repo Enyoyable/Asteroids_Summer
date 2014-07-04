@@ -19,5 +19,7 @@ public:
 	void HandleCollision(GameObject *p_GameObject);
 
 private:
+	sf::Vector2f mv2f_Speed;
 
+	float mf_velocity;
 };
