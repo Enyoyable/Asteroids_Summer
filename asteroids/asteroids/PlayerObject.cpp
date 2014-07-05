@@ -16,7 +16,7 @@ PlayerObject::PlayerObject(sf::Vector2f position, sf::Vector2f pv2f_Size, sf::Sp
 
 void PlayerObject::update(float pf_deltaTime)
 {
-	std::cout << mf_velocity << std::endl;
+	std::cout << mv2f_Speed.y << std::endl;
 	mv2f_Speed = sf::Vector2f((cosf((getRotation() - 90)*3.14159265 / 180) * mf_velocity), (sinf((getRotation() - 90)*3.14159265 / 180)* mf_velocity));
 	
 	//Move the player
@@ -48,7 +48,25 @@ void PlayerObject::update(float pf_deltaTime)
 	else if (mf_velocity < 0.00f)
 		mf_velocity += 0.001f;
 
-	//Sprite does not move without these. Why not?
+
+	if (getPosition().x > 1232 && mv2f_Speed.x > 0.0f)
+	{
+		setPosition(-32, getPosition().y);
+	}
+	if (getPosition().x < -32 && mv2f_Speed.x < 0.0f)
+	{
+		setPosition(1232, getPosition().y);
+	}
+	if (getPosition().y > 932 && mv2f_Speed.y > 0.0f)
+	{
+		setPosition(getPosition().x, -32);
+	}
+	if (getPosition().y < -32 && mv2f_Speed.y < 0.0f)
+	{
+		setPosition(getPosition().x, 932);
+	}
+
+		//Sprite does not move without these. Is it not linked to the game object?
 
 	if (m_Sprite->getPosition() != getPosition())
 	{
