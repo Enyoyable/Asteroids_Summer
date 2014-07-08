@@ -21,6 +21,9 @@ public:
 	void quit();
 	void Draw();
 
+	void addPlayer();
+	void addShot(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, sf::Vector2f pv2f_Direction, float pf_Angle, sf::Sprite *p_Sprite);
+
 private:
 
 	PlayerObject *m_Player;

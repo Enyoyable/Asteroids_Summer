@@ -60,6 +60,9 @@
     <ClCompile Include="CollisionManager.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerShot.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -103,6 +106,9 @@
     </ClInclude>
     <ClInclude Include="State.h">
       <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerShot.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

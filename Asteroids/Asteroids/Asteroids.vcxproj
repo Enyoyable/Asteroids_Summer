@@ -93,6 +93,7 @@
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="PlayerObject.cpp" />
+    <ClCompile Include="PlayerShot.cpp" />
     <ClCompile Include="SpriteManager.cpp" />
     <ClCompile Include="StateManager.cpp" />
   </ItemGroup>
@@ -107,6 +108,7 @@
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="PauseState.h" />
     <ClInclude Include="PlayerObject.h" />
+    <ClInclude Include="PlayerShot.h" />
     <ClInclude Include="SpriteManager.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateManager.h" />

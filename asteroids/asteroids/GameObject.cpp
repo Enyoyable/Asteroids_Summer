@@ -12,7 +12,7 @@ GameObject::GameObject(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, sf::S
 
 	setOrigin(mv2f_Size.x / 2, mv2f_Size.y / 2);
 
-
+	mb_toBeRemoved = false;
 }
 
 void GameObject::update(float pf_deltaTime)

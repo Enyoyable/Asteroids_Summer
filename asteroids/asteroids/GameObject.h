@@ -20,6 +20,8 @@ public:
 
 	virtual void HandleCollision(GameObject *p_GameObject);
 
+	bool mb_toBeRemoved;
+
 protected:
 	sf::Sprite *m_Sprite;
 	sf::Vector2f mv2f_Size;

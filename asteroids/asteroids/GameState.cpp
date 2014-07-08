@@ -1,15 +1,18 @@
 #pragma once
 #include <iostream>
 
+#include "Engine.h"
 #include "stdafx.h"
+#include "State.h"
 #include "GameState.h"
+
 #include "GameObjectManager.h"
 #include "StateManager.h"
 #include "SpriteManager.h"
 #include "CollisionManager.h"
-#include "Engine.h"
+
 #include "PlayerObject.h"
-#include "State.h"
+#include "PlayerShot.h"
 
 GameState::GameState(GameObjectManager *p_GameObjectManager, StateManager *p_StateManager, SpriteManager *p_SpriteManager, CollisionManager *p_CollisionManager, Engine *p_Engine)
 {
@@ -27,8 +30,7 @@ void GameState::Init()
 	std::cout << "Initialized ";
 	std::cout << ms_statename << std::endl;
 
-	m_Player = new PlayerObject(sf::Vector2f(m_Engine->m_window->getSize().x/2, m_Engine->m_window->getSize().y/2), sf::Vector2f(32.0f, 32.0f), m_SpriteManager->loadSprite("player.png", 0, 0, 32, 32));
-	mv_GameObjects.push_back(m_Player);
+	addPlayer();
 }
 
 void GameState::Cleanup()
@@ -61,4 +63,15 @@ void GameState::Draw()
 	{
 		m_GameObjectManager->drawObjects(&mv_GameObjects);
 	}*/
+}
+
+void GameState::addPlayer()
+{
+	m_Player = new PlayerObject(sf::Vector2f(m_Engine->m_window->getSize().x / 2, m_Engine->m_window->getSize().y / 2), sf::Vector2f(32.0f, 32.0f), this, m_SpriteManager, m_SpriteManager->loadSprite("player.png", 0, 0, 32, 32));
+	mv_GameObjects.push_back(m_Player);
+}
+
+void GameState::addShot(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, sf::Vector2f pv2f_Direction, float pf_Angle, sf::Sprite *p_Sprite)
+{
+	mv_GameObjects.push_back(new PlayerShot(pv2f_Position, pv2f_Size, pv2f_Direction, pf_Angle, p_Sprite));
 }

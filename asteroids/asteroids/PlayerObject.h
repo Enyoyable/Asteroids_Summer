@@ -3,11 +3,14 @@
 #include "stdafx.h"
 #include "GameObject.h"
 
+class GameState;
+class SpriteManager;
+
 class PlayerObject : public GameObject
 {
 public:
 
-	PlayerObject(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, sf::Sprite *p_Sprite);
+	PlayerObject(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, GameState *p_GameOState, SpriteManager *p_SpriteManager, sf::Sprite *p_Sprite);
 
 	void update(float pf_deltaTime);
 
@@ -22,4 +25,8 @@ private:
 	sf::Vector2f mv2f_Speed;
 
 	float mf_velocity;
+	float mf_fireCooldown;
+
+	GameState *m_GameState;
+	SpriteManager *m_SpriteManager;
 };
