@@ -10,9 +10,11 @@
 #include "StateManager.h"
 #include "SpriteManager.h"
 #include "CollisionManager.h"
+#include "AsteroidManager.h"
 
 #include "PlayerObject.h"
 #include "PlayerShot.h"
+#include "Asteroid.h"
 
 GameState::GameState(GameObjectManager *p_GameObjectManager, StateManager *p_StateManager, SpriteManager *p_SpriteManager, CollisionManager *p_CollisionManager, Engine *p_Engine)
 {
@@ -21,6 +23,8 @@ GameState::GameState(GameObjectManager *p_GameObjectManager, StateManager *p_Sta
 	m_SpriteManager = p_SpriteManager;
 	m_CollisionManager = p_CollisionManager;
 	m_Engine = p_Engine;
+
+	
 
 	ms_statename = "GameState";
 }
@@ -31,6 +35,9 @@ void GameState::Init()
 	std::cout << ms_statename << std::endl;
 
 	addPlayer();
+	
+	m_AsteroidManager = new AsteroidManager(&mv_GameObjects, m_SpriteManager);
+	//addAsteroid(sf::Vector2f(200, 200), 3, m_SpriteManager->loadSprite("asteroid01.png", 0, 0, 100, 100));
 }
 
 void GameState::Cleanup()
@@ -52,6 +59,7 @@ void GameState::Resume()
 
 void GameState::Update(float pf_deltaTime)
 {
+	m_AsteroidManager->update(pf_deltaTime);
 	m_GameObjectManager->updateObjects(&mv_GameObjects, pf_deltaTime);
 }
 
@@ -75,3 +83,4 @@ void GameState::addShot(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, sf::
 {
 	mv_GameObjects.push_back(new PlayerShot(pv2f_Position, pv2f_Size, pv2f_Direction, pf_Angle, p_Sprite));
 }
+

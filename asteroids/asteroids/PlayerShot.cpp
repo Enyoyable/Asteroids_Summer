@@ -17,14 +17,17 @@ PlayerShot::PlayerShot(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, sf::V
 
 void PlayerShot::update(float pf_deltaTime)
 {
+
 	move(mv2f_direction.x * 2, mv2f_direction.y * 2);
 	mv2f_totalDistance += mv2f_direction;
 	
+	//avoid infinite shots
 	if (std::abs(mv2f_totalDistance.x) + std::abs(mv2f_totalDistance.y) > 900)
 	{
 		mb_toBeRemoved = true;
 	}
 
+	//Screen warping (could be moved into Game object with a bool to trigger for only certain objects)
 	if (getPosition().x > 1232 && mv2f_direction.x > 0.0f)
 	{
 		setPosition(-32, getPosition().y);
@@ -42,6 +45,7 @@ void PlayerShot::update(float pf_deltaTime)
 		setPosition(getPosition().x, 932);
 	}
 
+	//Sprite moving
 	if (m_Sprite->getPosition() != getPosition())
 	{
 		m_Sprite->setPosition(getPosition());

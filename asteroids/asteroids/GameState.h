@@ -4,6 +4,8 @@
 #include "State.h"
 
 class PlayerObject;
+class Asteroid;
+class AsteroidManager;
 
 class GameState : public State
 {
@@ -23,9 +25,11 @@ public:
 
 	void addPlayer();
 	void addShot(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, sf::Vector2f pv2f_Direction, float pf_Angle, sf::Sprite *p_Sprite);
+	
 
 private:
 
 	PlayerObject *m_Player;
 
+	AsteroidManager *m_AsteroidManager;
 };

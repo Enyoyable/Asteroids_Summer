@@ -10,7 +10,7 @@ GameObject::GameObject(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, sf::S
 	setPosition(pv2f_Position);
 	mv2f_Size = pv2f_Size;
 
-	setOrigin(mv2f_Size.x / 2, mv2f_Size.y / 2);
+	//setOrigin(mv2f_Size.x / 2, mv2f_Size.y / 2);
 
 	mb_toBeRemoved = false;
 }

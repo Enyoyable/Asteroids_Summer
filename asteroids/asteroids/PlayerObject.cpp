@@ -31,7 +31,7 @@ void PlayerObject::update(float pf_deltaTime)
 	mf_fireCooldown += pf_deltaTime;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && mf_fireCooldown > 1.0f)
 	{
-		m_GameState->addShot(getPosition(), sf::Vector2f(7.0f, 21.0f), sf::Vector2f((cosf((getRotation() - 90)*3.14159265 / 180)), (sinf((getRotation() - 90)*3.14159265 / 180))), getRotation(), m_SpriteManager->loadSprite("PlaceholderShot.png", 0, 0, 7, 21));
+		m_GameState->addShot(sf::Vector2f(getPosition().x + (cosf((getRotation() - 90)*3.14159265 / 180) * mv2f_Size.x / 2), getPosition().y + (sinf((getRotation() - 90)*3.14159265 / 180)* mv2f_Size.y/2)), sf::Vector2f(7.0f, 21.0f), sf::Vector2f((cosf((getRotation() - 90)*3.14159265 / 180)), (sinf((getRotation() - 90)*3.14159265 / 180))), getRotation(), m_SpriteManager->loadSprite("PlaceholderShot.png", 0, 0, 7, 21));
 		mf_fireCooldown = 0.0f;
 	}
 
