@@ -2,11 +2,18 @@
 
 #include "stdafx.h"
 
+enum EObjectType
+{
+	PLAYER,
+	ROCK,
+	SHOT
+};
+
 class GameObject : public sf::Drawable, public sf::Transformable
 {
 public:
 	
-	GameObject(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, sf::Sprite *p_Sprite = nullptr);
+	GameObject(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, EObjectType pe_ObjectType,sf::Sprite *p_Sprite = nullptr);
 
 	virtual void update(float pf_deltaTime);
 
@@ -26,6 +33,7 @@ protected:
 	sf::Sprite *m_Sprite;
 	sf::Vector2f mv2f_Size;
 
+	EObjectType me_ObjectType;
 
 	bool mb_HasAnimation;
 };

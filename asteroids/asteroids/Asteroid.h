@@ -7,7 +7,7 @@ class Asteroid : public GameObject
 {
 public:
 
-	Asteroid(sf::Vector2f pv2f_position, int pi_size, sf::Sprite *p_Sprite);
+	Asteroid(sf::Vector2f pv2f_position, int pi_size, EObjectType pe_ObjectType, sf::Sprite *p_Sprite);
 
 	void update(float pf_deltaTime);
 

@@ -40,6 +40,6 @@ void AsteroidManager::update(float pf_deltaTime)
 
 void AsteroidManager::addAsteroid(sf::Vector2f pv2f_Position, int pi_Size, sf::Sprite *p_Sprite)
 {
-	mv_GameObjects->push_back(new Asteroid(pv2f_Position, pi_Size, p_Sprite));
+	mv_GameObjects->push_back(new Asteroid(pv2f_Position, pi_Size, ROCK, p_Sprite));
 	mi_AsteroidAmount += 1;
 }

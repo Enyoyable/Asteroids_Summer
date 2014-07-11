@@ -6,8 +6,8 @@
 #include <math.h>
 #include <iostream>
 
-Asteroid::Asteroid(sf::Vector2f pv2f_position, int pi_size, sf::Sprite *p_Sprite)
-:GameObject(pv2f_position, sf::Vector2f(100,100), p_Sprite)
+Asteroid::Asteroid(sf::Vector2f pv2f_position, int pi_size, EObjectType pe_ObjectType, sf::Sprite *p_Sprite)
+:GameObject(pv2f_position, sf::Vector2f(100, 100), pe_ObjectType, p_Sprite)
 {
 	m_Sprite->setOrigin(50, 50);
 

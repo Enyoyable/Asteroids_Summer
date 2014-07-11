@@ -4,8 +4,8 @@
 #include <math.h>
 #include <iostream>
 
-PlayerShot::PlayerShot(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, sf::Vector2f pv2f_direction, float pf_Angle, sf::Sprite *p_Sprite)
-: GameObject(pv2f_Position, pv2f_Size, p_Sprite)
+PlayerShot::PlayerShot(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, sf::Vector2f pv2f_direction, float pf_Angle, EObjectType pe_ObjectType, sf::Sprite *p_Sprite)
+: GameObject(pv2f_Position, pv2f_Size, pe_ObjectType, p_Sprite)
 {
 	mv2f_direction = pv2f_direction;
 	mv2f_totalDistance = sf::Vector2f(0.0f, 0.0f);

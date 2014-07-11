@@ -10,7 +10,7 @@ class PlayerObject : public GameObject
 {
 public:
 
-	PlayerObject(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, GameState *p_GameOState, SpriteManager *p_SpriteManager, sf::Sprite *p_Sprite);
+	PlayerObject(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, GameState *p_GameOState, SpriteManager *p_SpriteManager, EObjectType pe_ObjectType, sf::Sprite *p_Sprite);
 
 	void update(float pf_deltaTime);
 

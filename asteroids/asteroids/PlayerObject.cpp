@@ -7,8 +7,8 @@
 #include <iostream>
 #include <math.h>
 
-PlayerObject::PlayerObject(sf::Vector2f position, sf::Vector2f pv2f_Size, GameState *p_GameState, SpriteManager *p_SpriteManager, sf::Sprite *sprite)
-: GameObject(position, pv2f_Size, sprite)
+PlayerObject::PlayerObject(sf::Vector2f position, sf::Vector2f pv2f_Size, GameState *p_GameState, SpriteManager *p_SpriteManager, EObjectType pe_ObjectType, sf::Sprite *sprite)
+: GameObject(position, pv2f_Size, pe_ObjectType, sprite)
 {
 	//Why is the sprite separate from the game object?
 	m_Sprite->setOrigin(mv2f_Size.x / 2, mv2f_Size.y / 2);

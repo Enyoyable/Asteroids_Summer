@@ -3,7 +3,7 @@
 #include "GameObject.h"
 #include <iostream>
 
-GameObject::GameObject(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, sf::Sprite *p_Sprite)
+GameObject::GameObject(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, EObjectType pe_ObjectType, sf::Sprite *p_Sprite)
 {
 	setSprite(p_Sprite);
 
@@ -11,6 +11,8 @@ GameObject::GameObject(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, sf::S
 	mv2f_Size = pv2f_Size;
 
 	//setOrigin(mv2f_Size.x / 2, mv2f_Size.y / 2);
+
+	me_ObjectType = pe_ObjectType;
 
 	mb_toBeRemoved = false;
 }
