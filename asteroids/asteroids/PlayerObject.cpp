@@ -10,8 +10,7 @@
 PlayerObject::PlayerObject(sf::Vector2f position, sf::Vector2f pv2f_Size, GameState *p_GameState, SpriteManager *p_SpriteManager, EObjectType pe_ObjectType, sf::Sprite *sprite)
 : GameObject(position, pv2f_Size, pe_ObjectType, sprite)
 {
-	//Why is the sprite separate from the game object?
-	m_Sprite->setOrigin(mv2f_Size.x / 2, mv2f_Size.y / 2);
+	
 
 	mv2f_Speed = sf::Vector2f(0.0f, 0.0f);
 	mf_velocity = 0.0f;
@@ -106,5 +105,11 @@ void PlayerObject::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
 void PlayerObject::HandleCollision(GameObject *p_GameObject)
 {
-
+	if (p_GameObject->getType() == ROCK)
+	{
+		std::cout << "player hit" << std::endl;
+		setPosition(600, 450);
+		mv2f_Speed = sf::Vector2f(0, 0);
+		mf_velocity = 0;
+	}
 }

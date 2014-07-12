@@ -57,6 +57,14 @@ void PlayerShot::update(float pf_deltaTime)
 	}
 }
 
+void PlayerShot::HandleCollision(GameObject* p_gameObject)
+{
+	if (p_gameObject->getType() == ROCK)
+	{
+		mb_toBeRemoved = true;
+	}
+}
+
 void PlayerShot::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	if (m_Sprite != nullptr)

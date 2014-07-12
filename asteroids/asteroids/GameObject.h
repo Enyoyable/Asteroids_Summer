@@ -27,6 +27,8 @@ public:
 
 	virtual void HandleCollision(GameObject *p_GameObject);
 
+	EObjectType getType();
+
 	bool mb_toBeRemoved;
 
 protected:

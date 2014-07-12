@@ -33,13 +33,13 @@ void AsteroidManager::update(float pf_deltaTime)
 			posX = 1250;
 		}
 
-		addAsteroid(sf::Vector2f(posX, posY), 3, m_SpriteManager->loadSprite("asteroid01.png", 0, 0, 100, 100));
+		addAsteroid(sf::Vector2f(posX, posY), sf::Vector2f(0.0f, 0.0f), 3, m_SpriteManager->loadSprite("asteroid01.png", 0, 0, 100, 100));
 		mf_spawnTimer = 0.0f;
 	}
 }
 
-void AsteroidManager::addAsteroid(sf::Vector2f pv2f_Position, int pi_Size, sf::Sprite *p_Sprite)
+void AsteroidManager::addAsteroid(sf::Vector2f pv2f_position, sf::Vector2f pv2f_direction, int pi_Size, sf::Sprite *p_Sprite)
 {
-	mv_GameObjects->push_back(new Asteroid(pv2f_Position, pi_Size, ROCK, p_Sprite));
-	mi_AsteroidAmount += 1;
+	mv_GameObjects->push_back(new Asteroid(pv2f_position, pv2f_direction, pi_Size, this, ROCK, p_Sprite));
+	//mi_AsteroidAmount += 1;
 }

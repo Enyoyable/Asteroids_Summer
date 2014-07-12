@@ -13,7 +13,7 @@ public:
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
-	void handleCollision(GameObject* p_gameObject);
+	void HandleCollision(GameObject* p_gameObject);
 
 private:
 

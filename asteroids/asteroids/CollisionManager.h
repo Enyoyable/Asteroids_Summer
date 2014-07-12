@@ -2,6 +2,9 @@
 
 #include "stdafx.h"
 #include "GameObject.h"
+#include "PlayerObject.h"
+#include "Asteroid.h"
+#include "PlayerShot.h"
 
 class CollisionManager
 {

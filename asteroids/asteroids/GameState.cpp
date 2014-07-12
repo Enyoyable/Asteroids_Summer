@@ -59,6 +59,7 @@ void GameState::Update(float pf_deltaTime)
 {
 	m_AsteroidManager->update(pf_deltaTime);
 	m_GameObjectManager->updateObjects(&mv_GameObjects, pf_deltaTime);
+	m_CollisionManager->getCollision(&mv_GameObjects);
 }
 
 void GameState::Draw()
