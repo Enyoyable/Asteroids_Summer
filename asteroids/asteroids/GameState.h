@@ -6,6 +6,7 @@
 class PlayerObject;
 class Asteroid;
 class AsteroidManager;
+class HUDManager;
 
 class GameState : public State
 {
@@ -29,7 +30,11 @@ public:
 
 private:
 
+	int mi_score;
+
 	PlayerObject *m_Player;
 
 	AsteroidManager *m_AsteroidManager;
+
+	HUDManager *m_HUDManager;
 };

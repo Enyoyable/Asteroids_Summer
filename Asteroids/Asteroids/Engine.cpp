@@ -1,10 +1,12 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "Engine.h"
+
 #include "StateManager.h"
 #include "GameObjectManager.h"
 #include "CollisionManager.h"
 #include "SpriteManager.h"
+
 #include "MenuState.h"
 #include "GameState.h"
 #include "PauseState.h"
