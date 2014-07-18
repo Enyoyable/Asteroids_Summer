@@ -26,7 +26,7 @@ void PlayerObject::update(float pf_deltaTime)
 	
 	//shoot
 	mf_fireCooldown += pf_deltaTime;
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && mf_fireCooldown > 1.0f)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && mf_fireCooldown > 0.2f)
 	{
 		m_GameState->addShot(sf::Vector2f(getPosition().x + (cosf((getRotation() - 90)*3.14159265 / 180) * mv2f_Size.x / 2), getPosition().y + (sinf((getRotation() - 90)*3.14159265 / 180)* mv2f_Size.y/2)), sf::Vector2f(7.0f, 21.0f), sf::Vector2f((cosf((getRotation() - 90)*3.14159265 / 180)), (sinf((getRotation() - 90)*3.14159265 / 180))), getRotation(), m_SpriteManager->loadSprite("PlaceholderShot.png", 0, 0, 7, 21));
 		mf_fireCooldown = 0.0f;
@@ -36,14 +36,10 @@ void PlayerObject::update(float pf_deltaTime)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && mf_velocity < 1.5f)
 	{
 		mf_velocity += 0.01f;
-
-		//move(cosf((getRotation() -90)*3.14159265 / 180), sinf((getRotation() - 90)*3.14159265 / 180)/2);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && mf_velocity > -1.5f)
 	{
 		mf_velocity -= 0.01f;
-
-		//move(-cosf((getRotation() - 90)*3.14159265 / 180)/2, -sinf((getRotation() - 90)*3.14159265 / 180) /2);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{

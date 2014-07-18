@@ -15,18 +15,19 @@ Asteroid::Asteroid(sf::Vector2f pv2f_position, sf::Vector2f pv2f_direction, int 
 
 	switch (mi_size)
 	{
+		//speed does not set properly
 	case 1://small asteroid
-		mf_speed = 0.1;
+		mf_speed = 0.1f;
 		mv2f_Size = sf::Vector2f(25, 25);
 		m_Sprite->setScale(0.25f, 0.25f);
 		break;
 	case 2://Medium 
-		mf_speed = 0.3;
+		mf_speed = 0.1f;
 		mv2f_Size = sf::Vector2f(50, 50);
 		m_Sprite->setScale(0.5f, 0.5f);
 		break;
 	case 3://Large
-		mf_speed = 0.1;
+		mf_speed = 0.1f;
 		mv2f_Size = sf::Vector2f(100, 100);
 		m_Sprite->setScale(1,1);
 		break;
