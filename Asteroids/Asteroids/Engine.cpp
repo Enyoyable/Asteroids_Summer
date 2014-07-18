@@ -59,8 +59,6 @@ void Engine::run()
 		if (fDeltaTime > 0.1)
 			fDeltaTime = 0.1;
 
-		
-
 		sf::Event event;
 
 		while (m_window->pollEvent(event))

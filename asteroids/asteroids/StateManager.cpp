@@ -26,6 +26,7 @@ void StateManager::Update(float pf_deltatime, int pi_newstatenum)
 
 	if (mi_statenum != pi_newstatenum)
 	{
+		ms_currentState->Cleanup();
 		mi_statenum = pi_newstatenum;
 		Init();
 		
@@ -40,5 +41,5 @@ void StateManager::Draw()
 }
 void StateManager::Cleanup()
 {
-
+	ms_currentState->Cleanup();
 }

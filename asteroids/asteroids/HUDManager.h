@@ -1,3 +1,4 @@
+// More of a text manager
 #pragma once
 
 #include "stdafx.h"
@@ -9,6 +10,8 @@ public:
 	HUDManager(SpriteManager *p_SpriteManager);
 
 	void Update(float pf_deltaTime, int pi_score);
+
+	void Clear();
 
 	std::vector<sf::Text*> *getHUDObjects();
 

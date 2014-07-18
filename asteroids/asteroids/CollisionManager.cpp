@@ -10,12 +10,14 @@ CollisionManager::CollisionManager()
 
 void CollisionManager::getCollision(std::vector<GameObject*> *p_collisionObjects)
 {
+	int originalsize = p_collisionObjects->size();
 	//if object in collisionObjects overlaps with other object in collisionObjects, handle collision
 	//Can be adjusted to work differently depending on EObjectType, only distance related so far.
 	for (auto object1 : *p_collisionObjects)
 	{
 		for (auto object2 : *p_collisionObjects)
 		{
+			
 			if (object1 != object2)
 			{
 				if (std::abs((object1->getPosition().x) - (object2->getPosition().x)) < (object1->getSprite()->getGlobalBounds().width / 2 + object2->getSprite()->getGlobalBounds().width / 2)
@@ -42,6 +44,14 @@ void CollisionManager::getCollision(std::vector<GameObject*> *p_collisionObjects
 					}
 				}
 			}
+			if (originalsize != p_collisionObjects->size())
+			{
+				break;
+			}
+		}
+		if (originalsize != p_collisionObjects->size())
+		{
+			break;
 		}
 	}
 }

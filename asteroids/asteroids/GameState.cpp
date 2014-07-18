@@ -44,7 +44,8 @@ void GameState::Init()
 
 void GameState::Cleanup()
 {
-
+	mv_GameObjects.clear();
+	m_HUDManager->Clear();
 }
 
 

@@ -10,8 +10,6 @@
 PlayerObject::PlayerObject(sf::Vector2f position, sf::Vector2f pv2f_Size, GameState *p_GameState, SpriteManager *p_SpriteManager, EObjectType pe_ObjectType, sf::Sprite *sprite)
 : GameObject(position, pv2f_Size, pe_ObjectType, sprite)
 {
-	
-
 	mv2f_Speed = sf::Vector2f(0.0f, 0.0f);
 	mf_velocity = 0.0f;
 	mf_fireCooldown = 0.0f;

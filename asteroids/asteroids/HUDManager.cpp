@@ -22,6 +22,11 @@ void HUDManager::Update(float pf_deltaTime, int pi_score)
 	mt_Score.setString("Score: " + sstream.str());
 }
 
+void HUDManager::Clear()
+{
+	mv_HUDObjects.clear();
+}
+
 std::vector<sf::Text*> *HUDManager::getHUDObjects()
 {
 	return &mv_HUDObjects;

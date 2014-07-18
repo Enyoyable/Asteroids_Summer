@@ -16,17 +16,23 @@ Asteroid::Asteroid(sf::Vector2f pv2f_position, sf::Vector2f pv2f_direction, int 
 	switch (mi_size)
 	{
 	case 1://small asteroid
-		mf_speed = 0.5;
+		mf_speed = 0.1;
+		mv2f_Size = sf::Vector2f(25, 25);
+		m_Sprite->setScale(0.25f, 0.25f);
 		break;
 	case 2://Medium 
 		mf_speed = 0.3;
+		mv2f_Size = sf::Vector2f(50, 50);
+		m_Sprite->setScale(0.5f, 0.5f);
 		break;
 	case 3://Large
 		mf_speed = 0.1;
+		mv2f_Size = sf::Vector2f(100, 100);
+		m_Sprite->setScale(1,1);
 		break;
 	}
 
-	if (pv2f_direction != sf::Vector2f(0.0f, 0.0f))
+	if (pv2f_direction == sf::Vector2f(0.0f, 0.0f))
 	{
 		srand(time(NULL));
 
