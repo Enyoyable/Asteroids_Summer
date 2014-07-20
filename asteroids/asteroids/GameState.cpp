@@ -25,6 +25,8 @@ GameState::GameState(GameObjectManager *p_GameObjectManager, StateManager *p_Sta
 	m_CollisionManager = p_CollisionManager;
 	m_Engine = p_Engine;
 
+	mb_Shutdown = false;
+
 	ms_statename = "GameState";
 }
 
@@ -89,4 +91,9 @@ void GameState::addPlayer()
 void GameState::addShot(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, sf::Vector2f pv2f_Direction, float pf_Angle, sf::Sprite *p_Sprite)
 {
 	mv_GameObjects.push_back(new PlayerShot(pv2f_Position, pv2f_Size, pv2f_Direction, pf_Angle, SHOT, p_Sprite));
+}
+
+void GameState::setNewstate(int pi_newState)
+{
+	m_Engine->mi_newstate = pi_newState;
 }

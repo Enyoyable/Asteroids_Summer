@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "PauseState.h"
+#include "Engine.h"
 #include "State.h"
 
 PauseState::PauseState(GameObjectManager *p_GameObjectManager, StateManager *p_StateManager, SpriteManager *p_SpriteManager, CollisionManager *p_CollisionManager, Engine *p_Engine)
@@ -12,6 +13,8 @@ PauseState::PauseState(GameObjectManager *p_GameObjectManager, StateManager *p_S
 	m_SpriteManager = p_SpriteManager;
 	m_CollisionManager = p_CollisionManager;
 	m_Engine = p_Engine;
+
+	mb_Shutdown = false;
 
 	ms_statename = "PauseState";
 }
@@ -47,4 +50,9 @@ void PauseState::Update(float pf_deltaTime)
 void PauseState::Draw()
 {
 
+}
+
+void PauseState::setNewstate(int pi_newState)
+{
+	m_Engine->mi_newstate = pi_newState;
 }

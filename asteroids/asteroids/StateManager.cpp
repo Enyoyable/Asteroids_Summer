@@ -43,3 +43,8 @@ void StateManager::Cleanup()
 {
 	ms_currentState->Cleanup();
 }
+
+State* StateManager::getCurrectState()
+{
+	return ms_currentState;
+}

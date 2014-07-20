@@ -12,6 +12,8 @@ public:
 	void Init();
 	void Update(float pf_deltaTime);
 
+	
+
 	void Cleanup();
 	void Pause();
 	void Resume();
@@ -19,6 +21,8 @@ public:
 	void quit();
 	void Draw();
 
-private:
+	void setNewstate(int pi_newState);
 
+private:
+	GameObject *mo_Background;
 };

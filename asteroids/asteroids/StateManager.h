@@ -17,6 +17,8 @@ public:
 	void Quit() { mb_running = false; }
 	bool Running() { return mb_running; }
 	
+	State* getCurrectState();
+
 	int mi_statenum;
 
 private:

@@ -27,6 +27,7 @@ public:
 	void addPlayer();
 	void addShot(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, sf::Vector2f pv2f_Direction, float pf_Angle, sf::Sprite *p_Sprite);
 	
+	void setNewstate(int pi_newState);
 
 private:
 

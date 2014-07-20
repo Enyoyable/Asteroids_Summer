@@ -19,9 +19,15 @@ public:
 	virtual void Update(float pf_deltaTime) = 0;
 	virtual void Draw() = 0;
 
+	virtual void setNewstate(int pi_newState) = 0;
+
+	bool getShutdown() { return mb_Shutdown; };
+
 	std::string ms_statename;
 
 protected:
+	bool mb_Shutdown;
+
 	std::vector<GameObject*> mv_GameObjects;
 
 	GameObjectManager *m_GameObjectManager;

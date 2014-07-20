@@ -52,6 +52,7 @@ void Engine::run()
 
 	sm_Statemanager->Init();
 
+
 	while (m_window->isOpen())
 	{
 		float fDeltaTime = timer.restart().asSeconds();
@@ -84,7 +85,7 @@ void Engine::run()
 				//change to state three(End) if current state is not end
 			}
 
-			if (event.type == sf::Event::Closed)
+			if (event.type == sf::Event::Closed || sm_Statemanager->getCurrectState()->getShutdown())
 			{
 				sm_Statemanager->Cleanup();
 				sm_Statemanager->Quit();

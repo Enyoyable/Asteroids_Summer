@@ -22,12 +22,18 @@ GameObject::GameObject(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, EObje
 
 void GameObject::update(float pf_deltaTime)
 {
-	
+	if (m_Sprite->getOrigin() != getOrigin())
+	{
+		m_Sprite->setOrigin(getOrigin());
+	}
 }
 
 void GameObject::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	std::cout << "this shouldn't be shown\n";
+	if (m_Sprite != nullptr)
+	{
+		target.draw(*m_Sprite, states);
+	}
 }
 
 void GameObject::setSprite(sf::Sprite *p_Sprite)

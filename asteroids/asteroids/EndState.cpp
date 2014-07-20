@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "stdafx.h"
+#include "Engine.h"
 #include "EndState.h"
 #include "State.h"
 
@@ -11,6 +12,8 @@ EndState::EndState(GameObjectManager *p_GameObjectManager, StateManager *p_State
 	m_SpriteManager = p_SpriteManager;
 	m_CollisionManager = p_CollisionManager;
 	m_Engine = p_Engine;
+
+	mb_Shutdown = false;
 
 	ms_statename = "EndState";
 }
@@ -46,4 +49,9 @@ void EndState::Update(float pf_deltaTime)
 void EndState::Draw()
 {
 
+}
+
+void EndState::setNewstate(int pi_newState)
+{
+	m_Engine->mi_newstate = pi_newState;
 }
