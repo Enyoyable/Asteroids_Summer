@@ -10,7 +10,6 @@ GameObject::GameObject(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, EObje
 	setPosition(pv2f_Position);
 	mv2f_Size = pv2f_Size;
 
-	//Why is the sprite separate from the game object?
 	m_Sprite->setOrigin(mv2f_Size.x / 2, mv2f_Size.y / 2);
 
 	setOrigin(mv2f_Size.x / 2, mv2f_Size.y / 2);
@@ -25,6 +24,10 @@ void GameObject::update(float pf_deltaTime)
 	if (m_Sprite->getOrigin() != getOrigin())
 	{
 		m_Sprite->setOrigin(getOrigin());
+	}
+	if (m_Sprite->getPosition() != getPosition())
+	{
+		m_Sprite->setPosition(getPosition());
 	}
 }
 

@@ -7,7 +7,8 @@ enum EObjectType
 	PLAYER,
 	ROCK,
 	SHOT,
-	BACK
+	BACK,
+	HUDLIFE
 };
 
 class GameObject : public sf::Drawable, public sf::Transformable

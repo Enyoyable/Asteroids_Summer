@@ -23,19 +23,25 @@ public:
 
 	void quit();
 	void Draw();
+	void setNewstate(int pi_newState);
 
 	void addPlayer();
 	void addShot(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, sf::Vector2f pv2f_Direction, float pf_Angle, sf::Sprite *p_Sprite);
 	
-	void setNewstate(int pi_newState);
+	int getScore();
+	void setScore(int pi_newScore);
+		
 
 private:
 
 	int mi_score;
+	int mi_lives;
 
 	PlayerObject *m_Player;
 
 	AsteroidManager *m_AsteroidManager;
 
 	HUDManager *m_HUDManager;
+
+	std::vector<GameObject*> mv_lifeObjs;
 };

@@ -44,5 +44,5 @@ void AsteroidManager::addAsteroid(sf::Vector2f pv2f_position, sf::Vector2f pv2f_
 	{
 		mv_GameObjects->push_back(new Asteroid(pv2f_position, pv2f_direction, pi_Size, this, ROCK, p_Sprite));
 	}
-	//mi_AsteroidAmount += 1;
+	mi_AsteroidAmount += 1;
 }

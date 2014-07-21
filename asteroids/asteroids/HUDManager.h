@@ -18,6 +18,7 @@ public:
 private:
 
 	sf::Text mt_Score;
+	sf::Text mt_Lives;
 
 	sf::Font mfo_HUDone;
 

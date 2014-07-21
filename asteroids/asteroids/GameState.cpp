@@ -33,6 +33,7 @@ GameState::GameState(GameObjectManager *p_GameObjectManager, StateManager *p_Sta
 void GameState::Init()
 {
 	mi_score = 110;
+	mi_lives = 3;
 
 	std::cout << "Initialized ";
 	std::cout << ms_statename << std::endl;
@@ -41,7 +42,6 @@ void GameState::Init()
 	
 	m_AsteroidManager = new AsteroidManager(&mv_GameObjects, m_SpriteManager);
 	m_HUDManager = new HUDManager(m_SpriteManager);
-	//addAsteroid(sf::Vector2f(200, 200), 3, m_SpriteManager->loadSprite("asteroid01.png", 0, 0, 100, 100));
 }
 
 void GameState::Cleanup()
@@ -68,18 +68,25 @@ void GameState::Update(float pf_deltaTime)
 	m_GameObjectManager->updateObjects(&mv_GameObjects, pf_deltaTime);
 	m_HUDManager->Update(pf_deltaTime, mi_score);
 	m_CollisionManager->getCollision(&mv_GameObjects);
+
+	if (mv_lifeObjs.size() < mi_lives)
+	{
+		for (int i = 0; i < mi_lives; i++)
+		{
+			mv_lifeObjs.push_back(new GameObject(sf::Vector2f(350 + i * 35, 50), sf::Vector2f(32, 32), HUDLIFE, m_SpriteManager->loadSprite("player.png", 0, 0, 32, 32)));
+		}
+	}
+	else if (mv_lifeObjs.size() > mi_lives)
+	{
+		mv_lifeObjs.erase(mv_lifeObjs.begin() + mv_lifeObjs.size());
+	}
 }
 
 void GameState::Draw()
 {
 	m_GameObjectManager->drawObjects(&mv_GameObjects);
+	m_GameObjectManager->drawObjects(&mv_lifeObjs);
 	m_GameObjectManager->drawHUD(m_HUDManager->getHUDObjects());
-	//m_HUDManager->Draw();
-
-	/*for (auto vGameObjects : mv_GameObjects)
-	{
-		m_GameObjectManager->drawObjects(&mv_GameObjects);
-	}*/
 }
 
 void GameState::addPlayer()
@@ -96,4 +103,13 @@ void GameState::addShot(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, sf::
 void GameState::setNewstate(int pi_newState)
 {
 	m_Engine->mi_newstate = pi_newState;
+}
+
+int GameState::getScore()
+{
+	return mi_score;
+}
+void GameState::setScore(int pi_newScore)
+{
+	mi_score = pi_newScore;
 }
