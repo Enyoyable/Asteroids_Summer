@@ -5,6 +5,12 @@
 #include "EndState.h"
 #include "State.h"
 
+#include "GameObjectManager.h"
+#include "StateManager.h"
+#include "SpriteManager.h"
+#include "CollisionManager.h"
+#include "HUDManager.h"
+
 EndState::EndState(GameObjectManager *p_GameObjectManager, StateManager *p_StateManager, SpriteManager *p_SpriteManager, CollisionManager *p_CollisionManager, Engine *p_Engine)
 {
 	m_GameObjectManager = p_GameObjectManager;
@@ -22,6 +28,8 @@ void EndState::Init()
 {
 	std::cout << "Initialized ";
 	std::cout << ms_statename << std::endl;
+
+	mv_GameObjects.push_back(new GameObject(sf::Vector2f(200, 200), sf::Vector2f(800, 413), BACK, m_SpriteManager->loadSprite("gameover.png", 0, 0, 800, 413)));
 }
 
 void EndState::Cleanup()
@@ -43,12 +51,19 @@ void EndState::Resume()
 
 void EndState::Update(float pf_deltaTime)
 {
-
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	{
+		setNewstate(1);
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+	{
+		mb_Shutdown = true;
+	}
 }
 
 void EndState::Draw()
 {
-
+	m_GameObjectManager->drawObjects(&mv_GameObjects);
 }
 
 void EndState::setNewstate(int pi_newState)

@@ -73,7 +73,7 @@ void GameState::Update(float pf_deltaTime)
 	{
 		for (int i = 0; i < mi_lives; i++)
 		{
-			mv_lifeObjs.push_back(new GameObject(sf::Vector2f(350 + i * 35, 50), sf::Vector2f(32, 32), HUDLIFE, m_SpriteManager->loadSprite("player.png", 0, 0, 32, 32)));
+			mv_lifeObjs.push_back(new GameObject(sf::Vector2f(435 + i * 35, 85), sf::Vector2f(32, 32), HUDLIFE, m_SpriteManager->loadSprite("player.png", 0, 0, 32, 32)));
 		}
 	}
 	else if (mv_lifeObjs.size() > mi_lives)
@@ -112,4 +112,13 @@ int GameState::getScore()
 void GameState::setScore(int pi_newScore)
 {
 	mi_score = pi_newScore;
+}
+
+int GameState::getLives()
+{
+	return mi_lives;
+}
+void GameState::setLives(int pi_newLives)
+{
+	mi_lives = pi_newLives;
 }

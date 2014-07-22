@@ -105,6 +105,12 @@ void PlayerObject::HandleCollision(GameObject *p_GameObject)
 		setPosition(600, 450);
 		mv2f_Speed = sf::Vector2f(0, 0);
 		mf_velocity = 0;
-		m_GameState->setNewstate(3);
+		m_GameState->setScore(m_GameState->getScore() -1);
+		if (m_GameState->getLives() <= 0)
+		{
+			std::cout << "DEAD" << std::endl;
+			m_GameState->setNewstate(3);
+		}
+		
 	}
 }

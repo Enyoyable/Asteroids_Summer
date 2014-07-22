@@ -30,7 +30,9 @@ public:
 	
 	int getScore();
 	void setScore(int pi_newScore);
-		
+	
+	int getLives();
+	void setLives(int pi_newLives);
 
 private:
 

@@ -26,9 +26,18 @@ void StateManager::Update(float pf_deltatime, int pi_newstatenum)
 
 	if (mi_statenum != pi_newstatenum)
 	{
-		ms_currentState->Cleanup();
-		mi_statenum = pi_newstatenum;
-		Init();
+		if (mi_statenum == 1 && pi_newstatenum == 3)
+		{
+			mi_statenum = pi_newstatenum;
+			Init();
+		}
+		else
+		{
+			ms_currentState->Cleanup();
+			mi_statenum = pi_newstatenum;
+			Init();
+		}
+		
 		
 		//ms_currentState = states[mi_statenum];
 		//ms_currentState->Init();

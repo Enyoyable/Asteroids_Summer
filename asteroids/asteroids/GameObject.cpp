@@ -12,6 +12,8 @@ GameObject::GameObject(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, EObje
 
 	m_Sprite->setOrigin(mv2f_Size.x / 2, mv2f_Size.y / 2);
 
+	m_Sprite->setPosition(getPosition());
+
 	setOrigin(mv2f_Size.x / 2, mv2f_Size.y / 2);
 
 	me_ObjectType = pe_ObjectType;
