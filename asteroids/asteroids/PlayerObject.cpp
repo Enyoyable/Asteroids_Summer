@@ -24,6 +24,19 @@ void PlayerObject::update(float pf_deltaTime)
 {
 	mv2f_Speed = sf::Vector2f((cosf((getRotation() - 90)*3.14159265 / 180) * mf_velocity), (sinf((getRotation() - 90)*3.14159265 / 180)* mf_velocity));
 	
+	//Pause
+	if (m_GameState->getStateClock() > 1)
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+		{
+			m_GameState->setNewstate(2);
+			m_GameState->resetStateclock();
+			return;
+		}
+	}
+		
+	
+
 	//shoot
 	mf_fireCooldown += pf_deltaTime;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && mf_fireCooldown > 0.2f)
@@ -105,7 +118,7 @@ void PlayerObject::HandleCollision(GameObject *p_GameObject)
 		setPosition(600, 450);
 		mv2f_Speed = sf::Vector2f(0, 0);
 		mf_velocity = 0;
-		m_GameState->setScore(m_GameState->getScore() -1);
+		m_GameState->setLives(m_GameState->getLives() -1);
 		if (m_GameState->getLives() <= 0)
 		{
 			std::cout << "DEAD" << std::endl;

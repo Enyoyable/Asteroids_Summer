@@ -28,6 +28,8 @@ public:
 protected:
 	bool mb_Shutdown;
 
+	float mf_stateClock;
+
 	std::vector<GameObject*> mv_GameObjects;
 
 	GameObjectManager *m_GameObjectManager;

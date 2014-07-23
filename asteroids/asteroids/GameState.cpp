@@ -38,6 +38,8 @@ void GameState::Init()
 	std::cout << "Initialized ";
 	std::cout << ms_statename << std::endl;
 
+	mf_stateClock = 0.0f;
+
 	addPlayer();
 	
 	m_AsteroidManager = new AsteroidManager(&mv_GameObjects, m_SpriteManager);
@@ -64,6 +66,8 @@ void GameState::Resume()
 
 void GameState::Update(float pf_deltaTime)
 {
+	mf_stateClock += pf_deltaTime;
+
 	m_AsteroidManager->update(pf_deltaTime);
 	m_GameObjectManager->updateObjects(&mv_GameObjects, pf_deltaTime);
 	m_HUDManager->Update(pf_deltaTime, mi_score);
@@ -78,7 +82,7 @@ void GameState::Update(float pf_deltaTime)
 	}
 	else if (mv_lifeObjs.size() > mi_lives)
 	{
-		mv_lifeObjs.erase(mv_lifeObjs.begin() + mv_lifeObjs.size());
+		mv_lifeObjs.erase(mv_lifeObjs.begin() + mv_lifeObjs.size() -1);
 	}
 }
 
@@ -121,4 +125,14 @@ int GameState::getLives()
 void GameState::setLives(int pi_newLives)
 {
 	mi_lives = pi_newLives;
+}
+
+float GameState::getStateClock()
+{
+	return mf_stateClock;
+}
+
+void GameState::resetStateclock()
+{
+	mf_stateClock = 0.0f;
 }

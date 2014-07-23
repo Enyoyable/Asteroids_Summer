@@ -7,7 +7,6 @@ class GameObjectManager;
 class StateManager;
 class Engine;
 class GameObject;
-class HUDManager;
 
 class EndState : public State
 {
@@ -28,7 +27,6 @@ public:
 	void setNewstate(int pi_newState);
 
 private:
-	HUDManager *m_HUDManager;
 
 	GameObject *mo_youDiedText;
 };

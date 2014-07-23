@@ -26,7 +26,12 @@ void StateManager::Update(float pf_deltatime, int pi_newstatenum)
 
 	if (mi_statenum != pi_newstatenum)
 	{
-		if (mi_statenum == 1 && pi_newstatenum == 3)
+		if (mi_statenum == 1 && pi_newstatenum == 2)
+		{
+			mi_statenum = pi_newstatenum;
+			Init();
+		}
+		else if (mi_statenum == 2 && pi_newstatenum == 1)
 		{
 			mi_statenum = pi_newstatenum;
 			Init();

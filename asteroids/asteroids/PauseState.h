@@ -3,6 +3,8 @@
 #include "stdafx.h"
 #include "State.h"
 
+class GameObject;
+
 class PauseState : public State
 {
 public:
@@ -23,4 +25,5 @@ public:
 
 private:
 
+	GameObject *mo_pausedText;
 };

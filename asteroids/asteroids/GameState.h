@@ -34,6 +34,9 @@ public:
 	int getLives();
 	void setLives(int pi_newLives);
 
+	float getStateClock();
+	void resetStateclock();
+
 private:
 
 	int mi_score;
