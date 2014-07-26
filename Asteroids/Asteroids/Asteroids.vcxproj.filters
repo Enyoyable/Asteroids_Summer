@@ -72,6 +72,9 @@
     <ClCompile Include="HUDManager.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
+    <ClCompile Include="AnimatedSprite.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -127,6 +130,9 @@
     </ClInclude>
     <ClInclude Include="HUDManager.h">
       <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimatedSprite.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

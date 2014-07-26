@@ -23,6 +23,7 @@ public:
 
 	void quit();
 	void Draw();
+
 	void setNewstate(int pi_newState);
 
 	void addPlayer();

@@ -82,6 +82,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AnimatedSprite.cpp" />
     <ClCompile Include="Asteroid.cpp" />
     <ClCompile Include="AsteroidManager.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
@@ -101,6 +102,7 @@
     <ClCompile Include="StateManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimatedSprite.h" />
     <ClInclude Include="Asteroid.h" />
     <ClInclude Include="AsteroidManager.h" />
     <ClInclude Include="CollisionManager.h" />
