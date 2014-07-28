@@ -75,6 +75,9 @@
     <ClCompile Include="AnimatedSprite.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="PowerUp.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -132,6 +135,9 @@
       <Filter>Managers</Filter>
     </ClInclude>
     <ClInclude Include="AnimatedSprite.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerUp.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

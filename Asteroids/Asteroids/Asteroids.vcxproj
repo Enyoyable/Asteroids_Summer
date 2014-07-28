@@ -98,6 +98,7 @@
     <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="PlayerObject.cpp" />
     <ClCompile Include="PlayerShot.cpp" />
+    <ClCompile Include="PowerUp.cpp" />
     <ClCompile Include="SpriteManager.cpp" />
     <ClCompile Include="StateManager.cpp" />
   </ItemGroup>
@@ -117,6 +118,7 @@
     <ClInclude Include="PauseState.h" />
     <ClInclude Include="PlayerObject.h" />
     <ClInclude Include="PlayerShot.h" />
+    <ClInclude Include="PowerUp.h" />
     <ClInclude Include="SpriteManager.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateManager.h" />

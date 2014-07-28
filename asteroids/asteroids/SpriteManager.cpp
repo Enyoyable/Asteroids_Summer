@@ -1,4 +1,5 @@
 #include "SpriteManager.h"
+#include "AnimatedSprite.h"
 #include <iostream>
 #include <fstream>
 
@@ -67,12 +68,13 @@ sf::Sprite* SpriteManager::loadSprite(std::string ps_fileName, int pi_x, int pi_
 
 sf::Sprite* SpriteManager::loadSprite(std::string ps_filePath)
 {
-	std::fstream stream(ms_DirectoryPath + ps_filePath);
+	//std::fstream stream(ms_DirectoryPath + ps_filePath);
 
 	std::string sTexturePath;
 
-	//Stream to string not working...
-	stream >> sTexturePath;
+	//stream >> sTexturePath;
+
+	sTexturePath = ms_DirectoryPath + ps_filePath;
 
 	auto it = mm_textures.find(sTexturePath);
 
@@ -80,7 +82,7 @@ sf::Sprite* SpriteManager::loadSprite(std::string ps_filePath)
 	{
 		sf::Texture *texture = new sf::Texture;
 
-		texture->loadFromFile(ms_DirectoryPath + sTexturePath);
+		texture->loadFromFile(ms_DirectoryPath + ps_filePath);
 
 		mm_textures.insert(std::pair<std::string, sf::Texture*>(sTexturePath, texture));
 
@@ -89,7 +91,11 @@ sf::Sprite* SpriteManager::loadSprite(std::string ps_filePath)
 
 	int x, y, w, h;
 
-	stream >> x >> y >> w >> h;
+	x = 0;
+	y = 0;
+	w = it->second->getSize().x;
+	h = it->second->getSize().y;
+	//stream >> x >> y >> w >> h;
 
 	return new sf::Sprite(*it->second, sf::IntRect(x, y, w, h));
 }
@@ -110,9 +116,30 @@ AnimatedSprite *SpriteManager::loadanimatedSprite(std::string ps_fileName)
 
 		texture->loadFromFile(ms_DirectoryPath + sTexturePath);
 
-		mm_textures.insert(std::pair<std::string, sf::Texture*>(sTexturePath, texture);
+		mm_textures.insert(std::pair<std::string, sf::Texture*>(sTexturePath, texture));
 		
 		it = mm_textures.find(sTexturePath);
 	}
 	
+	AnimatedSprite *anSprite = new AnimatedSprite;
+
+	std::string sRow;
+
+	while (!stream.eof())
+	{
+		int x, y, w, h;
+
+		AnimatedSprite::Frame *frame = new AnimatedSprite::Frame;
+
+		stream >> frame->mf_duration;
+
+		stream >> x >> y >> w >> h;
+
+		frame->m_placement = sf::IntRect(x, y, w, h);
+
+		frame->m_texture = it->second;
+
+		anSprite->addFrame(frame);
+	}
+	return anSprite;
 }

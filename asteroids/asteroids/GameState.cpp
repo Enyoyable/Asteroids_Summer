@@ -95,7 +95,7 @@ void GameState::Draw()
 
 void GameState::addPlayer()
 {
-	m_Player = new PlayerObject(sf::Vector2f(m_Engine->m_window->getSize().x / 2, m_Engine->m_window->getSize().y / 2), sf::Vector2f(32.0f, 32.0f), this, m_SpriteManager, PLAYER, m_SpriteManager->loadSprite("player.png", 0, 0, 32, 32));
+	m_Player = new PlayerObject(sf::Vector2f(m_Engine->m_window->getSize().x / 2, m_Engine->m_window->getSize().y / 2), sf::Vector2f(32.0f, 32.0f), this, m_SpriteManager, PLAYER, m_SpriteManager->loadSprite("player.png"/*, 0, 0, 32, 32*/));
 	mv_GameObjects.push_back(m_Player);
 }
 
