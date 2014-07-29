@@ -7,8 +7,8 @@
 #include <iostream>
 #include <math.h>
 
-PlayerObject::PlayerObject(sf::Vector2f position, sf::Vector2f pv2f_Size, GameState *p_GameState, SpriteManager *p_SpriteManager, EObjectType pe_ObjectType, sf::Sprite *sprite)
-: GameObject(position, pv2f_Size, pe_ObjectType, sprite)
+PlayerObject::PlayerObject(sf::Vector2f position, sf::Vector2f pv2f_Size, GameState *p_GameState, SpriteManager *p_SpriteManager, EObjectType pe_ObjectType, AnimatedSprite *p_sprite)
+: GameObject(position, pv2f_Size, pe_ObjectType, nullptr)
 {
 	mv2f_Speed = sf::Vector2f(0.0f, 0.0f);
 	mf_velocity = 0.0f;
@@ -18,13 +18,15 @@ PlayerObject::PlayerObject(sf::Vector2f position, sf::Vector2f pv2f_Size, GameSt
 	m_SpriteManager = p_SpriteManager;
 
 	mb_HasAnimation = false;
+
+	m_animatedSprite = p_sprite;
 }
 
 void PlayerObject::update(float pf_deltaTime)
 {
 	mv2f_Speed = sf::Vector2f((cosf((getRotation() - 90)*3.14159265 / 180) * mf_velocity), (sinf((getRotation() - 90)*3.14159265 / 180)* mf_velocity));
 	
-	//Pause
+	//Pause (Might movie this into gamestate)
 	if (m_GameState->getStateClock() > 1)
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
@@ -34,8 +36,6 @@ void PlayerObject::update(float pf_deltaTime)
 			return;
 		}
 	}
-		
-	
 
 	//shoot
 	mf_fireCooldown += pf_deltaTime;
@@ -106,7 +106,8 @@ void PlayerObject::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	if (m_Sprite != nullptr)
 	{
-		target.draw(*m_Sprite, states);
+		//The solution to drawing animated sprites in in here...somewhere...
+		target.draw(*static_cast<AnimatedSprite*>(), states;
 	}
 }
 
@@ -126,4 +127,9 @@ void PlayerObject::HandleCollision(GameObject *p_GameObject)
 		}
 		
 	}
+}
+
+void setUpPlayerSprites(AnimatedSprite *p_sprite)
+{
+	p_sprite-
 }

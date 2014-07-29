@@ -2,15 +2,17 @@
 
 #include "stdafx.h"
 #include "GameObject.h"
+#include "AnimatedSprite.h"
 
 class GameState;
 class SpriteManager;
+class AnimatedSprite;
 
 class PlayerObject : public GameObject
 {
 public:
 
-	PlayerObject(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, GameState *p_GameOState, SpriteManager *p_SpriteManager, EObjectType pe_ObjectType, sf::Sprite *p_Sprite);
+	PlayerObject(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, GameState *p_GameOState, SpriteManager *p_SpriteManager, EObjectType pe_ObjectType, AnimatedSprite *p_sprite);
 
 	void update(float pf_deltaTime);
 
@@ -29,4 +31,6 @@ private:
 
 	GameState *m_GameState;
 	SpriteManager *m_SpriteManager;
+
+	AnimatedSprite *m_animatedSprite;
 };
