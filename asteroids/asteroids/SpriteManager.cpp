@@ -2,6 +2,7 @@
 #include "AnimatedSprite.h"
 #include <iostream>
 #include <fstream>
+#include <string>
 
 SpriteManager::SpriteManager(std::string directory)
 {
@@ -106,6 +107,8 @@ AnimatedSprite *SpriteManager::loadanimatedSprite(std::string ps_fileName)
 
 	std::string sTexturePath;
 
+	//sTexturePath = ms_DirectoryPath + ps_fileName;
+
 	stream >> sTexturePath;
 
 	auto it = mm_textures.find(sTexturePath);
@@ -124,6 +127,8 @@ AnimatedSprite *SpriteManager::loadanimatedSprite(std::string ps_fileName)
 	AnimatedSprite *anSprite = new AnimatedSprite;
 
 	std::string sRow;
+
+	int row = 0;
 
 	while (!stream.eof())
 	{

@@ -106,8 +106,7 @@ void PlayerObject::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	if (m_Sprite != nullptr)
 	{
-		//The solution to drawing animated sprites in in here...somewhere...
-		target.draw(*static_cast<AnimatedSprite*>(), states;
+		target.draw(*m_animatedSprite, states);
 	}
 }
 
@@ -127,9 +126,4 @@ void PlayerObject::HandleCollision(GameObject *p_GameObject)
 		}
 		
 	}
-}
-
-void setUpPlayerSprites(AnimatedSprite *p_sprite)
-{
-	p_sprite-
 }

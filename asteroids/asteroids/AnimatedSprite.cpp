@@ -6,7 +6,6 @@ AnimatedSprite::AnimatedSprite()
 	mf_timeSicneLastFrame = 0;
 	mb_isPlaying = true;
 	mi_currentFrame = 0;
-	ms_directoryPath = "../resources/animations/";
 }
 
 void AnimatedSprite::update(float pf_deltaTime)

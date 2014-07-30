@@ -39,7 +39,10 @@ void PowerUp::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	}
 }
 
-void HandleCollision(GameObject *p_GameObject)
+void PowerUp::HandleCollision(GameObject *p_GameObject)
 {
-
+	if (p_GameObject->getType() == PLAYER)
+	{
+		
+	}
 }
