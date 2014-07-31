@@ -47,6 +47,7 @@ public:
 	bool getIsTrigger();
 
 private:
+
 	bool mb_isPlaying;
 
 	std::vector<Frame*> mv_frames;

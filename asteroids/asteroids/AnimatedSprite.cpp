@@ -37,11 +37,13 @@ void AnimatedSprite::update(float pf_deltaTime)
 
 void AnimatedSprite::play()
 {
+	//Cannot be called from PlayerObject. Why not?
 	mb_isPlaying = true;
 }
 
 void AnimatedSprite::pause()
 {
+	//ditto ^^^^^^^^^^^^
 	mb_isPlaying = false;
 }
 

@@ -17,13 +17,40 @@ PlayerObject::PlayerObject(sf::Vector2f position, sf::Vector2f pv2f_Size, GameSt
 	m_GameState = p_GameState;
 	m_SpriteManager = p_SpriteManager;
 
-	mb_HasAnimation = false;
-
+	m_animatedSprite->play();
+	mb_inDeathCycle = false;
 	m_animatedSprite = p_sprite;
+	m_Sprite = m_SpriteManager->loadSprite("player.png");
+	
+	m_animatedSprite->setOrigin(mv2f_Size.x / 2, mv2f_Size.y / 2);
+	m_animatedSprite->setPosition(getPosition());
 }
 
 void PlayerObject::update(float pf_deltaTime)
 {
+	if (mb_inDeathCycle)
+	{
+		m_animatedSprite->update(pf_deltaTime);
+
+		mv2f_Speed = sf::Vector2f(0, 0);
+		mf_velocity = 0;
+		
+		if (m_animatedSprite->getCurrentFrame() == 3)
+		{
+			if (m_GameState->getLives() <= 0)
+			{
+				std::cout << "DEAD" << std::endl;
+				m_GameState->setNewstate(3);
+			}
+			else
+			{
+				setPosition(600, 450);
+				
+			}
+		}
+		return;
+	}
+
 	mv2f_Speed = sf::Vector2f((cosf((getRotation() - 90)*3.14159265 / 180) * mf_velocity), (sinf((getRotation() - 90)*3.14159265 / 180)* mf_velocity));
 	
 	//Pause (Might movie this into gamestate)
@@ -89,17 +116,19 @@ void PlayerObject::update(float pf_deltaTime)
 		setPosition(getPosition().x, 932);
 	}
 
-		//Sprite does not move without these. Is it not linked to the game object?
+		//Sprite does not move without these.
 
-	if (m_Sprite->getPosition() != getPosition())
+	if (m_animatedSprite->getPosition() != getPosition())
 	{
-		m_Sprite->setPosition(getPosition());
+		m_animatedSprite->setPosition(getPosition());
 	}
 
-	if (m_Sprite->getRotation() != getRotation())
+	if (m_animatedSprite->getRotation() != getRotation())
 	{
-		m_Sprite->setRotation(getRotation());
+		m_animatedSprite->setRotation(getRotation());
 	}
+
+	m_animatedSprite->update(pf_deltaTime);
 }
 
 void PlayerObject::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -112,18 +141,10 @@ void PlayerObject::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
 void PlayerObject::HandleCollision(GameObject *p_GameObject)
 {
-	if (p_GameObject->getType() == ROCK)
+	if (p_GameObject->getType() == ROCK && mb_inDeathCycle == false)
 	{
 		std::cout << "player hit" << std::endl;
-		setPosition(600, 450);
-		mv2f_Speed = sf::Vector2f(0, 0);
-		mf_velocity = 0;
-		m_GameState->setLives(m_GameState->getLives() -1);
-		if (m_GameState->getLives() <= 0)
-		{
-			std::cout << "DEAD" << std::endl;
-			m_GameState->setNewstate(3);
-		}
-		
+		mb_inDeathCycle = true;
+		m_GameState->setLives(m_GameState->getLives() - 1);
 	}
 }

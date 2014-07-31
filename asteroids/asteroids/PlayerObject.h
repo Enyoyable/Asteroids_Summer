@@ -26,6 +26,8 @@ public:
 private:
 	sf::Vector2f mv2f_Speed;
 
+	bool mb_inDeathCycle;
+
 	float mf_velocity;
 	float mf_fireCooldown;
 

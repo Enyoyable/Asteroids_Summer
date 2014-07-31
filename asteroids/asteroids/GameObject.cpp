@@ -5,14 +5,18 @@
 
 GameObject::GameObject(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, EObjectType pe_ObjectType, sf::Sprite *p_Sprite)
 {
-	setSprite(p_Sprite);
 
 	setPosition(pv2f_Position);
 	mv2f_Size = pv2f_Size;
 
-	m_Sprite->setOrigin(mv2f_Size.x / 2, mv2f_Size.y / 2);
+	setSprite(p_Sprite);
+	if (m_Sprite != nullptr)
+	{
+		m_Sprite->setOrigin(mv2f_Size.x / 2, mv2f_Size.y / 2);
 
-	m_Sprite->setPosition(getPosition());
+		m_Sprite->setPosition(getPosition());
+	}
+	
 
 	setOrigin(mv2f_Size.x / 2, mv2f_Size.y / 2);
 
@@ -23,13 +27,16 @@ GameObject::GameObject(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, EObje
 
 void GameObject::update(float pf_deltaTime)
 {
-	if (m_Sprite->getOrigin() != getOrigin())
+	if (m_Sprite != nullptr)
 	{
-		m_Sprite->setOrigin(getOrigin());
-	}
-	if (m_Sprite->getPosition() != getPosition())
-	{
-		m_Sprite->setPosition(getPosition());
+		if (m_Sprite->getOrigin() != getOrigin())
+		{
+			m_Sprite->setOrigin(getOrigin());
+		}
+		if (m_Sprite->getPosition() != getPosition())
+		{
+			m_Sprite->setPosition(getPosition());
+		}
 	}
 }
 
