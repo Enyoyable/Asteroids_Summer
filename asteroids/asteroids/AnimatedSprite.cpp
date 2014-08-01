@@ -4,7 +4,7 @@
 AnimatedSprite::AnimatedSprite()
 {
 	mf_timeSicneLastFrame = 0;
-	mb_isPlaying = true;
+	play();
 	mi_currentFrame = 0;
 }
 
@@ -37,13 +37,11 @@ void AnimatedSprite::update(float pf_deltaTime)
 
 void AnimatedSprite::play()
 {
-	//Cannot be called from PlayerObject. Why not?
 	mb_isPlaying = true;
 }
 
 void AnimatedSprite::pause()
 {
-	//ditto ^^^^^^^^^^^^
 	mb_isPlaying = false;
 }
 

@@ -16,6 +16,7 @@
 #include "PlayerObject.h"
 #include "PlayerShot.h"
 #include "Asteroid.h"
+#include "PowerUp.h"
 
 GameState::GameState(GameObjectManager *p_GameObjectManager, StateManager *p_StateManager, SpriteManager *p_SpriteManager, CollisionManager *p_CollisionManager, Engine *p_Engine)
 {

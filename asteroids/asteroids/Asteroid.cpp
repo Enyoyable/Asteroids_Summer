@@ -97,6 +97,7 @@ void Asteroid::HandleCollision(GameObject* p_GameObject)
 		mb_toBeRemoved = true;
 		m_AsteroidManager->addAsteroid(getPosition(), sf::Vector2f(cosf(mi_Direction + 30 * 3.14159265 / 180), sinf(mi_Direction + 30 * 3.14159265 / 180)), mi_size - 1, m_Sprite);
 		m_AsteroidManager->addAsteroid(getPosition(), sf::Vector2f(cosf(mi_Direction - 30 * 3.14159265 / 180), sinf(mi_Direction - 30 * 3.14159265 / 180)), mi_size - 1, m_Sprite);
+		m_AsteroidManager->addPowerUp(getPosition(), PWRUP);
 	}
 }
 

@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "GameState.h"
 #include "SpriteManager.h"
+#include "AnimatedSprite.h"
 
 #include "stdafx.h"
 #include <iostream>
@@ -17,9 +18,10 @@ PlayerObject::PlayerObject(sf::Vector2f position, sf::Vector2f pv2f_Size, GameSt
 	m_GameState = p_GameState;
 	m_SpriteManager = p_SpriteManager;
 
-	m_animatedSprite->play();
+	
 	mb_inDeathCycle = false;
 	m_animatedSprite = p_sprite;
+	m_animatedSprite->pause();
 	m_Sprite = m_SpriteManager->loadSprite("player.png");
 	
 	m_animatedSprite->setOrigin(mv2f_Size.x / 2, mv2f_Size.y / 2);
@@ -30,12 +32,14 @@ void PlayerObject::update(float pf_deltaTime)
 {
 	if (mb_inDeathCycle)
 	{
+		m_animatedSprite->play();
 		m_animatedSprite->update(pf_deltaTime);
 
 		mv2f_Speed = sf::Vector2f(0, 0);
 		mf_velocity = 0;
 		
-		if (m_animatedSprite->getCurrentFrame() == 3)
+		m_animatedSprite->play();
+		if (m_animatedSprite->getCurrentFrame() == 0)
 		{
 			if (m_GameState->getLives() <= 0)
 			{
@@ -45,7 +49,8 @@ void PlayerObject::update(float pf_deltaTime)
 			else
 			{
 				setPosition(600, 450);
-				
+				m_animatedSprite->pause();
+				mb_inDeathCycle = false;
 			}
 		}
 		return;
@@ -146,5 +151,6 @@ void PlayerObject::HandleCollision(GameObject *p_GameObject)
 		std::cout << "player hit" << std::endl;
 		mb_inDeathCycle = true;
 		m_GameState->setLives(m_GameState->getLives() - 1);
+		m_animatedSprite->setCurrentframe(1);
 	}
 }

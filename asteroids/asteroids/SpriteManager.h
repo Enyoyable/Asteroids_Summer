@@ -14,7 +14,9 @@ public:
 	
 	AnimatedSprite *loadanimatedSprite(std::string ps_FileName);
 
+	
 private:
+	
 	std::string ms_DirectoryPath;
 
 	std::map<std::string, sf::Texture*> mm_textures;
