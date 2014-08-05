@@ -19,6 +19,8 @@ public:
 
 	void HandleCollision(GameObject *p_GameObject);
 
+	int getPowerType();
+
 private:
 
 	int mi_powerType;

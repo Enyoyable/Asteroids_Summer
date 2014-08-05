@@ -7,7 +7,7 @@ class PlayerShot : public GameObject
 {
 public:
 
-	PlayerShot(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, sf::Vector2f pv2f_direction, float pf_angle, EObjectType pe_ObjectType, sf::Sprite *p_Sprite);
+	PlayerShot(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, sf::Vector2f pv2f_direction, float pf_angle, int pi_specialType, EObjectType pe_ObjectType, sf::Sprite *p_Sprite);
 
 	void update(float pf_deltaTime);
 
@@ -16,6 +16,8 @@ public:
 	void HandleCollision(GameObject* p_gameObject);
 
 private:
+
+	int mi_specialType;
 
 	sf::Vector2f mv2f_direction;
 

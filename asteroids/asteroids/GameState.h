@@ -27,7 +27,7 @@ public:
 	void setNewstate(int pi_newState);
 
 	void addPlayer();
-	void addShot(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, sf::Vector2f pv2f_Direction, float pf_Angle, sf::Sprite *p_Sprite);
+	void addShot(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, sf::Vector2f pv2f_Direction, float pf_Angle, int pi_specialType, sf::Sprite *p_Sprite);
 	
 	int getScore();
 	void setScore(int pi_newScore);

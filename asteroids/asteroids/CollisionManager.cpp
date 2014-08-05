@@ -53,6 +53,14 @@ void CollisionManager::getCollision(std::vector<GameObject*> *p_collisionObjects
 						asObj->HandleCollision(object1);
 						break;
 					}
+					else if (object1->getType() == PLAYER && object2->getType() == PWRUP)
+					{
+						PlayerObject *pObj = static_cast<PlayerObject*>(object1);
+						PowerUp *puObj = static_cast<PowerUp*>(object2);
+						
+						pObj->HandleCollision(puObj);
+						puObj->HandleCollision(object1);
+					}
 				}
 			}
 			if (originalsize != p_collisionObjects->size())

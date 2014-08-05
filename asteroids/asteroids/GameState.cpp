@@ -100,9 +100,9 @@ void GameState::addPlayer()
 	mv_GameObjects.push_back(m_Player);
 }
 
-void GameState::addShot(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, sf::Vector2f pv2f_Direction, float pf_Angle, sf::Sprite *p_Sprite)
+void GameState::addShot(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, sf::Vector2f pv2f_Direction, float pf_Angle, int pi_specialType, sf::Sprite *p_Sprite)
 {
-	mv_GameObjects.push_back(new PlayerShot(pv2f_Position, pv2f_Size, pv2f_Direction, pf_Angle, SHOT, p_Sprite));
+	mv_GameObjects.push_back(new PlayerShot(pv2f_Position, pv2f_Size, pv2f_Direction, pf_Angle, pi_specialType, SHOT, p_Sprite));
 }
 
 void GameState::setNewstate(int pi_newState)

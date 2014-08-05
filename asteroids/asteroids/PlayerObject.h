@@ -2,7 +2,8 @@
 
 #include "stdafx.h"
 #include "GameObject.h"
-#include "AnimatedSprite.h"
+#include "AnimatedSprite.h"'
+#include "PowerUp.h"
 
 class GameState;
 class SpriteManager;
@@ -23,8 +24,12 @@ public:
 
 	void HandleCollision(GameObject *p_GameObject);
 
+	void HandleCollision(PowerUp *p_PowerUp);
+
 private:
 	sf::Vector2f mv2f_Speed;
+
+	int mi_currentPowerUp;
 
 	bool mb_inDeathCycle;
 

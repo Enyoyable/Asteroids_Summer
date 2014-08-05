@@ -4,9 +4,11 @@
 #include <math.h>
 #include <iostream>
 
-PlayerShot::PlayerShot(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, sf::Vector2f pv2f_direction, float pf_Angle, EObjectType pe_ObjectType, sf::Sprite *p_Sprite)
+PlayerShot::PlayerShot(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, sf::Vector2f pv2f_direction, float pf_Angle, int pi_specialtype, EObjectType pe_ObjectType, sf::Sprite *p_Sprite)
 : GameObject(pv2f_Position, pv2f_Size, pe_ObjectType, p_Sprite)
 {
+
+	mi_specialType = pi_specialtype;
 	mv2f_direction = pv2f_direction;
 	mv2f_totalDistance = sf::Vector2f(0.0f, 0.0f);
 
@@ -61,7 +63,11 @@ void PlayerShot::HandleCollision(GameObject* p_gameObject)
 {
 	if (p_gameObject->getType() == ROCK)
 	{
-		mb_toBeRemoved = true;
+		if (mi_specialType != 1)
+		{
+			mb_toBeRemoved = true;
+		}
+		
 	}
 }
 

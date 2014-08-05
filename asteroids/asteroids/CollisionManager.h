@@ -5,6 +5,7 @@
 #include "PlayerObject.h"
 #include "Asteroid.h"
 #include "PlayerShot.h"
+#include "PowerUp.h"
 
 class CollisionManager
 {

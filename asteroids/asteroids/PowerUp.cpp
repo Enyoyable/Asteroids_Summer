@@ -8,8 +8,8 @@ PowerUp::PowerUp(sf::Vector2f pv2f_position, SpriteManager *p_SpriteManager, EOb
 {
 	
 	srand(time(NULL));
-	mi_powerType = rand() % 3 + 0;
-
+	//mi_powerType = rand() % 3 + 0;
+	mi_powerType = 1;
 	m_SpriteManager = p_SpriteManager;
 	m_animatedSprite = m_SpriteManager->loadanimatedSprite("powerup1.txt");
 
@@ -44,6 +44,11 @@ void PowerUp::update(float pf_deltatime)
 	}
 }
 
+int PowerUp::getPowerType()
+{
+	return mi_powerType;
+}
+
 void PowerUp::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	if (m_animatedSprite != nullptr)
@@ -56,6 +61,6 @@ void PowerUp::HandleCollision(GameObject *p_GameObject)
 {
 	if (p_GameObject->getType() == PLAYER)
 	{
-		
+		mb_toBeRemoved = true;
 	}
 }

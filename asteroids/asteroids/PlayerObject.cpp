@@ -14,10 +14,10 @@ PlayerObject::PlayerObject(sf::Vector2f position, sf::Vector2f pv2f_Size, GameSt
 	mv2f_Speed = sf::Vector2f(0.0f, 0.0f);
 	mf_velocity = 0.0f;
 	mf_fireCooldown = 0.0f;
+	mi_currentPowerUp = 0;
 
 	m_GameState = p_GameState;
 	m_SpriteManager = p_SpriteManager;
-
 	
 	mb_inDeathCycle = false;
 	m_animatedSprite = p_sprite;
@@ -73,8 +73,22 @@ void PlayerObject::update(float pf_deltaTime)
 	mf_fireCooldown += pf_deltaTime;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && mf_fireCooldown > 0.2f)
 	{
-		m_GameState->addShot(sf::Vector2f(getPosition().x + (cosf((getRotation() - 90)*3.14159265 / 180) * mv2f_Size.x / 2), getPosition().y + (sinf((getRotation() - 90)*3.14159265 / 180)* mv2f_Size.y/2)), sf::Vector2f(7.0f, 21.0f), sf::Vector2f((cosf((getRotation() - 90)*3.14159265 / 180)), (sinf((getRotation() - 90)*3.14159265 / 180))), getRotation(), m_SpriteManager->loadSprite("PlaceholderShot.png", 0, 0, 7, 21));
-		mf_fireCooldown = 0.0f;
+		sf::Vector2f position = sf::Vector2f(getPosition().x + (cosf((getRotation() - 90)*3.14159265 / 180) * mv2f_Size.x / 2), 
+											getPosition().y + (sinf((getRotation() - 90)*3.14159265 / 180)* mv2f_Size.y / 2));
+
+		sf::Vector2f direction = sf::Vector2f((cosf((getRotation() - 90)*3.14159265 / 180)), (sinf((getRotation() - 90)*3.14159265 / 180)));
+
+		float rotation = getRotation();
+
+		if (mi_currentPowerUp == 0)
+		{
+			m_GameState->addShot(position, sf::Vector2f(7.0f, 21.0f), direction, rotation, mi_currentPowerUp, m_SpriteManager->loadSprite("shot0.png", 0, 0, 7, 21));
+		}
+		else if (mi_currentPowerUp == 1)
+		{
+ 			m_GameState->addShot(position, sf::Vector2f(7.0f, 21.0f), direction, getRotation(), mi_currentPowerUp, m_SpriteManager->loadSprite("shot1.png", 0, 0, 7, 21));
+		}
+		mf_fireCooldown = 0;
 	}
 
 	//Move the player
@@ -153,4 +167,14 @@ void PlayerObject::HandleCollision(GameObject *p_GameObject)
 		m_GameState->setLives(m_GameState->getLives() - 1);
 		m_animatedSprite->setCurrentframe(1);
 	}
+	else if (p_GameObject->getType() == PWRUP && mb_inDeathCycle == false)
+	{
+		
+	}
+}
+
+void PlayerObject::HandleCollision(PowerUp *p_PowerUp)
+{
+	mi_currentPowerUp = p_PowerUp->getPowerType();
+	std::cout << "Picked up PowerUp" + mi_currentPowerUp << std::endl;
 }
