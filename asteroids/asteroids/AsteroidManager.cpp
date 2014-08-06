@@ -23,7 +23,7 @@ void AsteroidManager::update(float pf_deltaTime)
 {
 	srand(time(NULL));
 	mf_spawnTimer += pf_deltaTime;
-	if (mf_spawnTimer > 1 * mi_Difficulty && mi_AsteroidAmount < 10)
+	if (mf_spawnTimer > 1 * mi_Difficulty && mi_AsteroidAmount < 3)
 	{
 		float posX = rand() % 1201 + 0;
 		float posY = rand() % 901 + 0;

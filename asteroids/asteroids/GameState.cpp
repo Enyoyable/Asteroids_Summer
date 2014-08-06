@@ -34,7 +34,7 @@ GameState::GameState(GameObjectManager *p_GameObjectManager, StateManager *p_Sta
 void GameState::Init()
 {
 	mi_score = 110;
-	mi_lives = 3;
+	mi_lives = 50;
 
 	std::cout << "Initialized ";
 	std::cout << ms_statename << std::endl;

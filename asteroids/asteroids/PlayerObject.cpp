@@ -14,6 +14,7 @@ PlayerObject::PlayerObject(sf::Vector2f position, sf::Vector2f pv2f_Size, GameSt
 	mv2f_Speed = sf::Vector2f(0.0f, 0.0f);
 	mf_velocity = 0.0f;
 	mf_fireCooldown = 0.0f;
+	mf_powerupTimer = 0.0f;
 	mi_currentPowerUp = 0;
 
 	m_GameState = p_GameState;
@@ -30,6 +31,7 @@ PlayerObject::PlayerObject(sf::Vector2f position, sf::Vector2f pv2f_Size, GameSt
 
 void PlayerObject::update(float pf_deltaTime)
 {
+	//Do things differently when getting hit by something
 	if (mb_inDeathCycle)
 	{
 		m_animatedSprite->play();
@@ -56,7 +58,6 @@ void PlayerObject::update(float pf_deltaTime)
 		return;
 	}
 
-	mv2f_Speed = sf::Vector2f((cosf((getRotation() - 90)*3.14159265 / 180) * mf_velocity), (sinf((getRotation() - 90)*3.14159265 / 180)* mf_velocity));
 	
 	//Pause (Might movie this into gamestate)
 	if (m_GameState->getStateClock() > 1)
@@ -88,10 +89,31 @@ void PlayerObject::update(float pf_deltaTime)
 		{
  			m_GameState->addShot(position, sf::Vector2f(7.0f, 21.0f), direction, getRotation(), mi_currentPowerUp, m_SpriteManager->loadSprite("shot1.png", 0, 0, 7, 21));
 		}
+		else if (mi_currentPowerUp == 2)
+		{
+			m_GameState->addShot(position, sf::Vector2f(7.0f, 21.0f), sf::Vector2f((cosf((getRotation() - 70)*3.14159265 / 180)), (sinf((getRotation() - 70)*3.14159265 / 180))), getRotation() + 20, mi_currentPowerUp, m_SpriteManager->loadSprite("shot3.png", 0, 0, 7, 21));
+			m_GameState->addShot(position, sf::Vector2f(7.0f, 21.0f), direction, getRotation(), mi_currentPowerUp, m_SpriteManager->loadSprite("shot3.png", 0, 0, 7, 21));
+			m_GameState->addShot(position, sf::Vector2f(7.0f, 21.0f), sf::Vector2f((cosf((getRotation() - 110)*3.14159265 / 180)), (sinf((getRotation() - 110)*3.14159265 / 180))), getRotation() - 20, mi_currentPowerUp, m_SpriteManager->loadSprite("shot3.png", 0, 0, 7, 21));
+		}
 		mf_fireCooldown = 0;
 	}
 
+	//PowerUp related things
+
+	if (mf_powerupTimer > 0 && mi_currentPowerUp != 0)
+	{
+		mf_powerupTimer -= pf_deltaTime;
+	}
+	else if (mf_powerupTimer < 0)
+	{
+		mf_powerupTimer = 0.0f;
+		mi_currentPowerUp = 0;
+	}
+
 	//Move the player
+
+	mv2f_Speed = sf::Vector2f((cosf((getRotation() - 90)*3.14159265 / 180) * mf_velocity), (sinf((getRotation() - 90)*3.14159265 / 180)* mf_velocity));
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && mf_velocity < 1.5f)
 	{
 		mf_velocity += 0.01f;
@@ -167,14 +189,23 @@ void PlayerObject::HandleCollision(GameObject *p_GameObject)
 		m_GameState->setLives(m_GameState->getLives() - 1);
 		m_animatedSprite->setCurrentframe(1);
 	}
-	else if (p_GameObject->getType() == PWRUP && mb_inDeathCycle == false)
-	{
-		
-	}
 }
 
 void PlayerObject::HandleCollision(PowerUp *p_PowerUp)
 {
 	mi_currentPowerUp = p_PowerUp->getPowerType();
+	if (mi_currentPowerUp == 1)
+	{
+		mf_powerupTimer = 3;
+	}
+	else if (mi_currentPowerUp == 2)
+	{
+		mf_powerupTimer = 2;
+	}
+	else if (mi_currentPowerUp == 3)
+	{
+		m_GameState->setLives(m_GameState->getLives() + 1);
+		mi_currentPowerUp = 0;
+	}
 	std::cout << "Picked up PowerUp" + mi_currentPowerUp << std::endl;
 }

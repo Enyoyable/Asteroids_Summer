@@ -35,6 +35,7 @@ private:
 
 	float mf_velocity;
 	float mf_fireCooldown;
+	float mf_powerupTimer;
 
 	GameState *m_GameState;
 	SpriteManager *m_SpriteManager;
