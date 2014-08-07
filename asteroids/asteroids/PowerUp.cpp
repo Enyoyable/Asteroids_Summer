@@ -9,28 +9,22 @@ PowerUp::PowerUp(sf::Vector2f pv2f_position, SpriteManager *p_SpriteManager, EOb
 	
 	srand(time(NULL));
 	//mi_powerType = rand() % 3 + 0;
-	mi_powerType = 2;
+	mi_powerType = 3;
 	m_SpriteManager = p_SpriteManager;
 	
 
 
 	switch (mi_powerType)
 	{
-	case 1:
-		{
-			//set to specific powerup (Piercing shot)
-			  m_animatedSprite = m_SpriteManager->loadanimatedSprite("powerup1.txt");
-		}
-	case 2:
-		{
-			//set to specific powerup (scatter shot)
-			  m_animatedSprite = m_SpriteManager->loadanimatedSprite("powerup2.txt");
-		}
-	case 3:
-		{
-			//set to specific powerup
-			  m_animatedSprite = m_SpriteManager->loadanimatedSprite("powerup3.txt");
-		}
+	case 1://set to specific powerup (piercing shot)
+		m_animatedSprite = m_SpriteManager->loadanimatedSprite("powerup1.txt");
+		break;
+	case 2://set to specific powerup (scatter shot)
+    	m_animatedSprite = m_SpriteManager->loadanimatedSprite("powerup2.txt");
+		break;
+	case 3://set to specific powerup
+		m_animatedSprite = m_SpriteManager->loadanimatedSprite("powerup3.txt");
+		break;
 	}
 
 	//This is just to allow the collision to measure it's size.

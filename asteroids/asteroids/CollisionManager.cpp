@@ -19,37 +19,36 @@ void CollisionManager::getCollision(std::vector<GameObject*> *p_collisionObjects
 		{
 			if (object1 != object2)
 			{
-				if (std::abs((object1->getPosition().x) - (object2->getPosition().x)) < std::abs(object1->getSprite()->getGlobalBounds().width / 2 + object2->getSprite()->getGlobalBounds().width / 2)
-					&& std::abs((object1->getPosition().y) - (object2->getPosition().y)) < std::abs(object1->getSprite()->getGlobalBounds().height / 2 + object2->getSprite()->getGlobalBounds().height / 2))
+				if (std::abs((object1->getPosition().x) - (object2->getPosition().x)) < (object1->getSize() + object2->getSize() / 1.5f)
+					&& std::abs((object1->getPosition().y) - (object2->getPosition().y)) < (object1->getSize() + object2->getSize() / 1.5f))
 				{
 					int xDiff = std::abs((object1->getPosition().x) - (object2->getPosition().x));
 					int yDiff = std::abs((object1->getPosition().y) - (object2->getPosition().y));
-					int textBuff = object1->getSprite()->getGlobalBounds().width + object2->getSprite()->getGlobalBounds().width;
-
+					
 					if (object1->getType() == PLAYER && object2->getType() == ROCK)
 					{
 						PlayerObject *pObj = static_cast<PlayerObject*>(object1);
-						pObj->HandleCollision(object2);
-
 						Asteroid *asObj = static_cast<Asteroid*>(object2);
+
+						pObj->HandleCollision(object2);
 						asObj->HandleCollision(object2);
 						break;
 					}
 					else if (object1->getType() == ROCK && object2->getType() == SHOT)
 					{
 						Asteroid *asObj = static_cast<Asteroid*>(object1);
-						asObj->HandleCollision(object2);
-
 						PlayerShot *shotObj = static_cast<PlayerShot*>(object2);
+
+						asObj->HandleCollision(object2);
 						shotObj->HandleCollision(object1);
 						break;
 					}
 					else if (object1->getType() == SHOT && object2->getType() == ROCK)
 					{
 						PlayerShot *shotObj = static_cast<PlayerShot*>(object1);
-						shotObj->HandleCollision(object2);
-
 						Asteroid *asObj = static_cast<Asteroid*>(object2);
+
+						shotObj->HandleCollision(object2);
 						asObj->HandleCollision(object1);
 						break;
 					}

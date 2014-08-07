@@ -91,9 +91,9 @@ void PlayerObject::update(float pf_deltaTime)
 		}
 		else if (mi_currentPowerUp == 2)
 		{
-			m_GameState->addShot(position, sf::Vector2f(7.0f, 21.0f), sf::Vector2f((cosf((getRotation() - 70)*3.14159265 / 180)), (sinf((getRotation() - 70)*3.14159265 / 180))), getRotation() + 20, mi_currentPowerUp, m_SpriteManager->loadSprite("shot3.png", 0, 0, 7, 21));
-			m_GameState->addShot(position, sf::Vector2f(7.0f, 21.0f), direction, getRotation(), mi_currentPowerUp, m_SpriteManager->loadSprite("shot3.png", 0, 0, 7, 21));
-			m_GameState->addShot(position, sf::Vector2f(7.0f, 21.0f), sf::Vector2f((cosf((getRotation() - 110)*3.14159265 / 180)), (sinf((getRotation() - 110)*3.14159265 / 180))), getRotation() - 20, mi_currentPowerUp, m_SpriteManager->loadSprite("shot3.png", 0, 0, 7, 21));
+			m_GameState->addShot(position, sf::Vector2f(7.0f, 21.0f), sf::Vector2f((cosf((getRotation() - 70)*3.14159265 / 180)), (sinf((getRotation() - 70)*3.14159265 / 180))), getRotation() + 20, mi_currentPowerUp, m_SpriteManager->loadSprite("shot2.png", 0, 0, 7, 21));
+			m_GameState->addShot(position, sf::Vector2f(7.0f, 21.0f), direction, getRotation(), mi_currentPowerUp, m_SpriteManager->loadSprite("shot2.png", 0, 0, 7, 21));
+			m_GameState->addShot(position, sf::Vector2f(7.0f, 21.0f), sf::Vector2f((cosf((getRotation() - 110)*3.14159265 / 180)), (sinf((getRotation() - 110)*3.14159265 / 180))), getRotation() - 20, mi_currentPowerUp, m_SpriteManager->loadSprite("shot2.png", 0, 0, 7, 21));
 		}
 		mf_fireCooldown = 0;
 	}
@@ -200,7 +200,7 @@ void PlayerObject::HandleCollision(PowerUp *p_PowerUp)
 	}
 	else if (mi_currentPowerUp == 2)
 	{
-		mf_powerupTimer = 2;
+		mf_powerupTimer = 10;
 	}
 	else if (mi_currentPowerUp == 3)
 	{

@@ -58,21 +58,23 @@ sf::Sprite *GameObject::getSprite()
 	return m_Sprite;
 }
 
-
-
-//void GameObject::setType(EObjectType pe_ObjectType)
-//{
-
-//}
-
-//EObjectType GameObject::getType()
-//{
-
-//}
-
 void GameObject::HandleCollision(GameObject *pp_GameObject)
 {
 
+}
+
+float GameObject::getSize()
+{
+	float xSize = m_Sprite->getGlobalBounds().width;
+	float ySize = m_Sprite->getGlobalBounds().height;
+	if (ySize > xSize)
+	{
+		return ySize;
+	}
+	else
+	{
+		return xSize;
+	}
 }
 
 EObjectType GameObject::getType()

@@ -34,7 +34,7 @@ GameState::GameState(GameObjectManager *p_GameObjectManager, StateManager *p_Sta
 void GameState::Init()
 {
 	mi_score = 110;
-	mi_lives = 50;
+	mi_lives = 3;
 
 	std::cout << "Initialized ";
 	std::cout << ms_statename << std::endl;
@@ -76,12 +76,12 @@ void GameState::Update(float pf_deltaTime)
 
 	if (mv_lifeObjs.size() < mi_lives)
 	{
-		for (int i = 0; i < mi_lives; i++)
+		for (int i = mv_lifeObjs.size(); i < mi_lives; i++)
 		{
 			mv_lifeObjs.push_back(new GameObject(sf::Vector2f(435 + i * 35, 85), sf::Vector2f(32, 32), HUDLIFE, m_SpriteManager->loadSprite("player.png", 0, 0, 32, 32)));
 		}
 	}
-	else if (mv_lifeObjs.size() > mi_lives)
+	if (mv_lifeObjs.size() > mi_lives)
 	{
 		mv_lifeObjs.erase(mv_lifeObjs.begin() + mv_lifeObjs.size() -1);
 	}

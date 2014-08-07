@@ -32,6 +32,8 @@ public:
 
 	EObjectType getType();
 
+	float getSize();
+
 	bool mb_toBeRemoved;
 
 protected:

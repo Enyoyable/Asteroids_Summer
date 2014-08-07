@@ -46,6 +46,7 @@ Asteroid::Asteroid(sf::Vector2f pv2f_position, sf::Vector2f pv2f_direction, int 
 	else
 	{
 		mv2f_direction = pv2f_direction;
+		mi_Direction = 0;
 	}
 	
 
@@ -78,6 +79,8 @@ void Asteroid::update(float pf_deltaTime)
 		setPosition(getPosition().x, 900 + mv2f_Size.y);
 	}
 
+	
+
 	//Sprite
 	if (m_Sprite->getPosition() != getPosition())
 	{
@@ -103,6 +106,12 @@ void Asteroid::HandleCollision(GameObject* p_GameObject)
 
 void Asteroid::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
+	if (mi_size == 2)
+	{
+		std::cout << "small rock" << std::endl;
+		std::cout << getPosition().x << std::endl;
+		std::cout << getPosition().y << std::endl;
+	}
 	if (m_Sprite != nullptr)
 	{
 		target.draw(*m_Sprite, states);
