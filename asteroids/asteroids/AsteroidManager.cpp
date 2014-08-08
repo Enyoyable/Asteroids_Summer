@@ -5,6 +5,7 @@
 
 #include "GameObjectManager.h"
 #include "SpriteManager.h"
+#include <iostream>
 #include <time.h>
 
 AsteroidManager::AsteroidManager(std::vector<GameObject*> *pv_GameObjects, SpriteManager* p_SpriteManager)
@@ -23,21 +24,34 @@ void AsteroidManager::update(float pf_deltaTime)
 {
 	srand(time(NULL));
 	mf_spawnTimer += pf_deltaTime;
-	if (mf_spawnTimer > 1 * mi_Difficulty && mi_AsteroidAmount < 3)
+	if (mf_spawnTimer > 1 * mi_Difficulty && mi_AsteroidAmount < 10)
 	{
-		float posX = rand() % 1201 + 0;
-		float posY = rand() % 901 + 0;
-
-		if (posX > 0 - 50 && posX <= 600)
+		int Side = rand() % 4 + 0;
+		float posX;
+		float posY;
+	
+		switch (Side)
 		{
-			posX = 0 - 50;
-		}
-		if (posX > 600 && posX < 1250)
-		{
-			posX = 1250;
+		case 0://Top
+			posX = rand() % 1201 + 0;
+			posY = -100;
+			break;
+		case 1://Bottom
+			posX = rand() % 1201 + 0;
+			posY = 1000;
+			break;
+		case 2://Right
+			posX = 1300;
+			posY = rand() % 901 + 0;
+			break;
+		case 3://Left
+			posX = -100;
+			posY = rand() % 901 + 0;
+			break;
 		}
 
 		addAsteroid(sf::Vector2f(posX, posY), sf::Vector2f(0.0f, 0.0f), 3, m_SpriteManager->loadSprite("asteroid01.png", 0, 0, 100, 100));
+		mi_AsteroidAmount += 1;
 		mf_spawnTimer = 0.0f;
 	}
 }
@@ -46,8 +60,7 @@ void AsteroidManager::addAsteroid(sf::Vector2f pv2f_position, sf::Vector2f pv2f_
 {
 	if (pi_Size > 0)
 	{
-		mv_GameObjects->push_back(new Asteroid(pv2f_position, pv2f_direction, pi_Size, this, ROCK, p_Sprite));
-		mi_AsteroidAmount += 1;
+		mv_GameObjects->push_back(new Asteroid(pv2f_position, pv2f_direction, pi_Size, this, ROCK, p_Sprite, m_SpriteManager));
 	}
 	
 }

@@ -3,6 +3,7 @@
 #include "stdafx.h"
 #include "GameObject.h"
 #include "AsteroidManager.h"
+#include "SpriteManager.h"
 
 class AsteroidManager;
 
@@ -10,7 +11,7 @@ class Asteroid : public GameObject
 {
 public:
 
-	Asteroid(sf::Vector2f pv2f_position, sf::Vector2f pv2f_direction,  int pi_size, AsteroidManager* p_AsteroidManager, EObjectType pe_ObjectType, sf::Sprite *p_Sprite);
+	Asteroid(sf::Vector2f pv2f_position, sf::Vector2f pv2f_direction,  int pi_size, AsteroidManager* p_AsteroidManager, EObjectType pe_ObjectType, sf::Sprite *p_Sprite, SpriteManager *p_SpriteManager);
 	
 	void update(float pf_deltaTime);
 
@@ -27,4 +28,6 @@ private:
 	AsteroidManager *m_AsteroidManager;
 
 	sf::Vector2f mv2f_direction;
+
+	SpriteManager * m_SpriteManager;
 };

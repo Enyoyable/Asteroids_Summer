@@ -31,7 +31,7 @@ void CollisionManager::getCollision(std::vector<GameObject*> *p_collisionObjects
 						Asteroid *asObj = static_cast<Asteroid*>(object2);
 
 						pObj->HandleCollision(object2);
-						asObj->HandleCollision(object2);
+						asObj->HandleCollision(object1);
 						break;
 					}
 					else if (object1->getType() == ROCK && object2->getType() == SHOT)

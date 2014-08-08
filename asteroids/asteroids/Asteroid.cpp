@@ -6,12 +6,13 @@
 #include <math.h>
 #include <iostream>
 
-Asteroid::Asteroid(sf::Vector2f pv2f_position, sf::Vector2f pv2f_direction, int pi_size, AsteroidManager *p_AsteroidManager, EObjectType pe_ObjectType, sf::Sprite *p_Sprite)
+Asteroid::Asteroid(sf::Vector2f pv2f_position, sf::Vector2f pv2f_direction, int pi_size, AsteroidManager *p_AsteroidManager, EObjectType pe_ObjectType, sf::Sprite *p_Sprite, SpriteManager *p_SpriteManager)
 :GameObject(pv2f_position, sf::Vector2f(100, 100), pe_ObjectType, p_Sprite)
 {
 	mi_size = pi_size;
 
 	m_AsteroidManager = p_AsteroidManager;
+	m_SpriteManager = p_SpriteManager;
 
 	switch (mi_size)
 	{
@@ -35,10 +36,9 @@ Asteroid::Asteroid(sf::Vector2f pv2f_position, sf::Vector2f pv2f_direction, int 
 
 	if (pv2f_direction == sf::Vector2f(0.0f, 0.0f))
 	{
-		srand(time(NULL));
+		mi_Direction = (rand() % 361 + 0);
 
-		mi_Direction = rand() % 361 + 0;
-
+		std::cout << mi_Direction << std::endl;
 		setRotation(mi_Direction);
 
 		mv2f_direction = sf::Vector2f(cosf(mi_Direction * 3.14159265 / 180) * mf_speed, sinf(mi_Direction * 3.14159265 / 180) * mf_speed);
@@ -93,25 +93,22 @@ void Asteroid::update(float pf_deltaTime)
 	}
 }
 
+//sf::Vector2f(cosf(mi_Direction + 30 * 3.14159265 / 180), sinf(mi_Direction + 30 * 3.14159265 / 180))
+
 void Asteroid::HandleCollision(GameObject* p_GameObject)
 {
 	if (p_GameObject->getType() == PLAYER || p_GameObject->getType() == SHOT)
 	{
-		mb_toBeRemoved = true;
-		m_AsteroidManager->addAsteroid(getPosition(), sf::Vector2f(cosf(mi_Direction + 30 * 3.14159265 / 180), sinf(mi_Direction + 30 * 3.14159265 / 180)), mi_size - 1, m_Sprite);
-		m_AsteroidManager->addAsteroid(getPosition(), sf::Vector2f(cosf(mi_Direction - 30 * 3.14159265 / 180), sinf(mi_Direction - 30 * 3.14159265 / 180)), mi_size - 1, m_Sprite);
+		m_AsteroidManager->addAsteroid(getPosition(), sf::Vector2f(cosf(mi_Direction + 30 * 3.14159265 / 180) * mf_speed, sinf(mi_Direction + 30 * 3.14159265 / 180) * mf_speed), mi_size - 1, m_SpriteManager->loadSprite("asteroid01.png")); //Motherfuckers have the same sprite!
+		m_AsteroidManager->addAsteroid(getPosition(), sf::Vector2f(cosf(mi_Direction - 30 * 3.14159265 / 180) * mf_speed, sinf(mi_Direction - 30 * 3.14159265 / 180) * mf_speed), mi_size - 1, m_SpriteManager->loadSprite("asteroid01.png"));
 		m_AsteroidManager->addPowerUp(getPosition(), PWRUP);
+		mb_toBeRemoved = true;
 	}
 }
 
 void Asteroid::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	if (mi_size == 2)
-	{
-		std::cout << "small rock" << std::endl;
-		std::cout << getPosition().x << std::endl;
-		std::cout << getPosition().y << std::endl;
-	}
+	
 	if (m_Sprite != nullptr)
 	{
 		target.draw(*m_Sprite, states);
