@@ -5,6 +5,7 @@
 class Engine
 {
 public:
+	//Create, initialize and remove the Engine
 	Engine();
 	~Engine();
 
@@ -12,7 +13,9 @@ public:
 	void run();
 	void cleanup();
 
+	//The window the game uses
 	sf::RenderWindow *m_window;
 
+	//Used for switching between states
 	int mi_newstate;
 };

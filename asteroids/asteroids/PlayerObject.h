@@ -13,17 +13,19 @@ class PlayerObject : public GameObject
 {
 public:
 
+	//create new instance of Player
 	PlayerObject(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, GameState *p_GameOState, SpriteManager *p_SpriteManager, EObjectType pe_ObjectType, AnimatedSprite *p_sprite);
 
+	//update player
 	void update(float pf_deltaTime);
-
+	
+	//draw player
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
-	//void setType(EObjectType pe_ObjectType);
-	//EObjectType getType();
-
+	//What to do when colliding with object
 	void HandleCollision(GameObject *p_GameObject);
 
+	//Special handle for powerups. May be unnecessary. NOTE: might wanna put this back in the normal handlecollision
 	void HandleCollision(PowerUp *p_PowerUp);
 
 private:
