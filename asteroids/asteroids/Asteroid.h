@@ -19,6 +19,7 @@ public:
 
 	void HandleCollision(GameObject *p_GameObject);
 
+
 private:
 	int mi_size;
 	int mi_Direction;

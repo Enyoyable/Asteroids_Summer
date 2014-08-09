@@ -79,8 +79,6 @@ void Asteroid::update(float pf_deltaTime)
 		setPosition(getPosition().x, 900 + mv2f_Size.y);
 	}
 
-	
-
 	//Sprite
 	if (m_Sprite->getPosition() != getPosition())
 	{
@@ -93,13 +91,12 @@ void Asteroid::update(float pf_deltaTime)
 	}
 }
 
-//sf::Vector2f(cosf(mi_Direction + 30 * 3.14159265 / 180), sinf(mi_Direction + 30 * 3.14159265 / 180))
-
 void Asteroid::HandleCollision(GameObject* p_GameObject)
 {
 	if (p_GameObject->getType() == PLAYER || p_GameObject->getType() == SHOT)
 	{
-		m_AsteroidManager->addAsteroid(getPosition(), sf::Vector2f(cosf(mi_Direction + 30 * 3.14159265 / 180) * mf_speed, sinf(mi_Direction + 30 * 3.14159265 / 180) * mf_speed), mi_size - 1, m_SpriteManager->loadSprite("asteroid01.png")); //Motherfuckers have the same sprite!
+		m_AsteroidManager->getGameState()->addToScore(100 * mi_size);
+		m_AsteroidManager->addAsteroid(getPosition(), sf::Vector2f(cosf(mi_Direction + 30 * 3.14159265 / 180) * mf_speed, sinf(mi_Direction + 30 * 3.14159265 / 180) * mf_speed), mi_size - 1, m_SpriteManager->loadSprite("asteroid01.png"));
 		m_AsteroidManager->addAsteroid(getPosition(), sf::Vector2f(cosf(mi_Direction - 30 * 3.14159265 / 180) * mf_speed, sinf(mi_Direction - 30 * 3.14159265 / 180) * mf_speed), mi_size - 1, m_SpriteManager->loadSprite("asteroid01.png"));
 		m_AsteroidManager->addPowerUp(getPosition(), PWRUP);
 		mb_toBeRemoved = true;

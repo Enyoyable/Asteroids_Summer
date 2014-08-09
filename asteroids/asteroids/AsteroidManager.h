@@ -2,6 +2,7 @@
 #pragma once
 #include "stdafx.h"
 #include "GameObject.h"
+#include "GameState.h"
 
 class GameObjectManager;
 class SpriteManager;
@@ -11,13 +12,15 @@ class AsteroidManager
 {
 public:
 	
-	AsteroidManager(std::vector<GameObject*> *pv_GameObjects, SpriteManager* p_SpriteManager);
+	AsteroidManager(std::vector<GameObject*> *pv_GameObjects, SpriteManager* p_SpriteManager, GameState *p_GameState);
 
 	void update(float pf_deltaTime);
 
 	void addAsteroid(sf::Vector2f pv2f_position, sf::Vector2f pv2f_direction, int pi_Size, sf::Sprite *p_Sprite);
 
 	void addPowerUp(sf::Vector2f pv2f_position, EObjectType pe_objectType);
+
+	GameState* getGameState();
 
 private:
 
@@ -29,6 +32,7 @@ private:
 
 	GameObjectManager* m_GameObjectManager;
 	SpriteManager* m_SpriteManager;
+	GameState* m_GameState;
 
 	std::vector<GameObject*> *mv_GameObjects;
 };

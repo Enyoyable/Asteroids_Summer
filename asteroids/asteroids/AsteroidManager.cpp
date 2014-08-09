@@ -8,10 +8,11 @@
 #include <iostream>
 #include <time.h>
 
-AsteroidManager::AsteroidManager(std::vector<GameObject*> *pv_GameObjects, SpriteManager* p_SpriteManager)
+AsteroidManager::AsteroidManager(std::vector<GameObject*> *pv_GameObjects, SpriteManager* p_SpriteManager, GameState* p_GameState)
 {
 	m_SpriteManager = p_SpriteManager;
 	mv_GameObjects = pv_GameObjects;
+	m_GameState = p_GameState;
 
 	mi_AsteroidAmount = 0;
 	mi_PowerUpsAmount = 0;
@@ -49,7 +50,7 @@ void AsteroidManager::update(float pf_deltaTime)
 			posY = rand() % 901 + 0;
 			break;
 		}
-
+		
 		addAsteroid(sf::Vector2f(posX, posY), sf::Vector2f(0.0f, 0.0f), 3, m_SpriteManager->loadSprite("asteroid01.png", 0, 0, 100, 100));
 		mi_AsteroidAmount += 1;
 		mf_spawnTimer = 0.0f;
@@ -72,4 +73,9 @@ void AsteroidManager::addPowerUp(sf::Vector2f pv2f_position, EObjectType pe_obje
 		mv_GameObjects->push_back(new PowerUp(pv2f_position, m_SpriteManager, pe_objectType));
 		mi_PowerUpsAmount;
 	}
+}
+
+GameState* AsteroidManager::getGameState()
+{
+	return m_GameState;
 }

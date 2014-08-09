@@ -19,8 +19,8 @@ void CollisionManager::getCollision(std::vector<GameObject*> *p_collisionObjects
 		{
 			if (object1 != object2)
 			{
-				if (std::abs((object1->getPosition().x) - (object2->getPosition().x)) < (object1->getSize() + object2->getSize() / 1.5f)
-					&& std::abs((object1->getPosition().y) - (object2->getPosition().y)) < (object1->getSize() + object2->getSize() / 1.5f))
+				if (std::abs((object1->getPosition().x) - (object2->getPosition().x)) < (object1->getSize() / 2 + object2->getSize() / 2)
+					&& std::abs((object1->getPosition().y) - (object2->getPosition().y)) < (object1->getSize() / 2 + object2->getSize() / 2))
 				{
 					int xDiff = std::abs((object1->getPosition().x) - (object2->getPosition().x));
 					int yDiff = std::abs((object1->getPosition().y) - (object2->getPosition().y));

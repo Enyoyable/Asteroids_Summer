@@ -33,7 +33,7 @@ GameState::GameState(GameObjectManager *p_GameObjectManager, StateManager *p_Sta
 
 void GameState::Init()
 {
-	mi_score = 110;
+	mi_score = 0;
 	mi_lives = 3;
 
 	std::cout << "Initialized ";
@@ -43,7 +43,7 @@ void GameState::Init()
 
 	addPlayer();
 	
-	m_AsteroidManager = new AsteroidManager(&mv_GameObjects, m_SpriteManager);
+	m_AsteroidManager = new AsteroidManager(&mv_GameObjects, m_SpriteManager, this);
 	m_HUDManager = new HUDManager(m_SpriteManager);
 }
 
@@ -117,6 +117,11 @@ int GameState::getScore()
 void GameState::setScore(int pi_newScore)
 {
 	mi_score = pi_newScore;
+}
+
+void GameState::addToScore(int pi_newScore)
+{
+	mi_score += pi_newScore;
 }
 
 int GameState::getLives()
