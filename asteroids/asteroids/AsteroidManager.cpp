@@ -25,7 +25,7 @@ void AsteroidManager::update(float pf_deltaTime)
 {
 	srand(time(NULL));
 	mf_spawnTimer += pf_deltaTime;
-	if (mf_spawnTimer > 1 * mi_Difficulty && mi_AsteroidAmount < 10)
+	if (mf_spawnTimer > 1 * mi_Difficulty && mi_AsteroidAmount < 5)
 	{
 		int Side = rand() % 4 + 0;
 		float posX;
@@ -51,17 +51,17 @@ void AsteroidManager::update(float pf_deltaTime)
 			break;
 		}
 		
-		addAsteroid(sf::Vector2f(posX, posY), sf::Vector2f(0.0f, 0.0f), 3, m_SpriteManager->loadSprite("asteroid01.png", 0, 0, 100, 100));
+		addAsteroid(sf::Vector2f(posX, posY), sf::Vector2f(0.0f, 0.0f), 0, 3, m_SpriteManager->loadSprite("asteroid01.png", 0, 0, 100, 100));
 		mi_AsteroidAmount += 1;
 		mf_spawnTimer = 0.0f;
 	}
 }
 
-void AsteroidManager::addAsteroid(sf::Vector2f pv2f_position, sf::Vector2f pv2f_direction, int pi_Size, sf::Sprite *p_Sprite)
+void AsteroidManager::addAsteroid(sf::Vector2f pv2f_position, sf::Vector2f pv2f_direction, int pi_direction, int pi_Size, sf::Sprite *p_Sprite)
 {
 	if (pi_Size > 0)
 	{
-		mv_GameObjects->push_back(new Asteroid(pv2f_position, pv2f_direction, pi_Size, this, ROCK, p_Sprite, m_SpriteManager));
+		mv_GameObjects->push_back(new Asteroid(pv2f_position, pv2f_direction, pi_direction, pi_Size, this, ROCK, p_Sprite, m_SpriteManager));
 	}
 	
 }

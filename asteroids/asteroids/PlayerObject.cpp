@@ -30,6 +30,9 @@ PlayerObject::PlayerObject(sf::Vector2f position, sf::Vector2f pv2f_Size, GameSt
 	m_animatedSprite->pause();
 	m_animatedSprite->setOrigin(mv2f_Size.x / 2, mv2f_Size.y / 2);
 	m_animatedSprite->setPosition(getPosition());
+
+	//set other sprite for size calulation
+	m_Sprite = m_SpriteManager->loadSprite("player.png");
 }
 
 void PlayerObject::update(float pf_deltaTime)
@@ -81,7 +84,7 @@ void PlayerObject::update(float pf_deltaTime)
 
 	//Shoots if the cooldown is finished
 	mf_fireCooldown += pf_deltaTime;
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && mf_fireCooldown > 0.2f)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && mf_fireCooldown > 0.3f)
 	{
 		//Gets the different variables needed to create a shot and determind it's direction.
 		sf::Vector2f position = sf::Vector2f(getPosition().x + (cosf((getRotation() - 90)*3.14159265 / 180) * mv2f_Size.x / 2), 
@@ -128,27 +131,27 @@ void PlayerObject::update(float pf_deltaTime)
 	mv2f_Speed = sf::Vector2f((cosf((getRotation() - 90)*3.14159265 / 180) * mf_velocity), (sinf((getRotation() - 90)*3.14159265 / 180)* mf_velocity));
 	move(mv2f_Speed);
 	
-	//Adjusts the speed and direction of the player depending on input
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && mf_velocity < 1.5f)
+	//Adjusts the speed and direction of the player depending on input. Cannot go over a certain speed.
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && mf_velocity < 1.0f)
 	{
-		mf_velocity += 0.01f;
+		mf_velocity += 0.005f;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && mf_velocity > -1.5f)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && mf_velocity > -1.0f)
 	{
-		mf_velocity -= 0.01f;
+		mf_velocity -= 0.005f;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
-		rotate(-0.5);
+		rotate(-0.3);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
-		rotate(0.5);
+		rotate(0.3);
 	}
 
-	//max and minimum for player speed
-	if (mf_velocity > 0.00f)
-		mf_velocity -= 0.001f;
+	//reduce player speed when button not pressed
+	if (mf_velocity > 0.001f)
+		mf_velocity -= 0.0008f;
 	else if (mf_velocity < 0.00f)
 		mf_velocity += 0.001f;
 

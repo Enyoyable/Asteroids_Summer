@@ -6,7 +6,7 @@
 #include <math.h>
 #include <iostream>
 
-Asteroid::Asteroid(sf::Vector2f pv2f_position, sf::Vector2f pv2f_direction, int pi_size, AsteroidManager *p_AsteroidManager, EObjectType pe_ObjectType, sf::Sprite *p_Sprite, SpriteManager *p_SpriteManager)
+Asteroid::Asteroid(sf::Vector2f pv2f_position, sf::Vector2f pv2f_direction, int pi_direction, int pi_size, AsteroidManager *p_AsteroidManager, EObjectType pe_ObjectType, sf::Sprite *p_Sprite, SpriteManager *p_SpriteManager)
 :GameObject(pv2f_position, sf::Vector2f(100, 100), pe_ObjectType, p_Sprite)
 {
 	mi_size = pi_size;
@@ -14,16 +14,18 @@ Asteroid::Asteroid(sf::Vector2f pv2f_position, sf::Vector2f pv2f_direction, int 
 	m_AsteroidManager = p_AsteroidManager;
 	m_SpriteManager = p_SpriteManager;
 
+	mf_speed = 0.5f;
+
 	switch (mi_size)
 	{
 		//speed does not set properly
 	case 1://small asteroid
-		mf_speed = 0.1f;
+		mf_speed = 0.5f;
 		mv2f_Size = sf::Vector2f(25, 25);
 		m_Sprite->setScale(0.25f, 0.25f);
 		break;
 	case 2://Medium 
-		mf_speed = 0.1f;
+		mf_speed = 0.5f;
 		mv2f_Size = sf::Vector2f(50, 50);
 		m_Sprite->setScale(0.5f, 0.5f);
 		break;
@@ -45,12 +47,10 @@ Asteroid::Asteroid(sf::Vector2f pv2f_position, sf::Vector2f pv2f_direction, int 
 	}
 	else
 	{
-		mv2f_direction = pv2f_direction;
-		mi_Direction = 0;
+		mv2f_direction = sf::Vector2f(pv2f_direction.x * mf_speed, pv2f_direction.y * mf_speed);
+		mi_Direction = pi_direction;
 	}
 	
-
-	mb_HasAnimation = false;
 	mb_toBeRemoved = false;
 }
 
@@ -96,8 +96,8 @@ void Asteroid::HandleCollision(GameObject* p_GameObject)
 	if (p_GameObject->getType() == PLAYER || p_GameObject->getType() == SHOT)
 	{
 		m_AsteroidManager->getGameState()->addToScore(100 * mi_size);
-		m_AsteroidManager->addAsteroid(getPosition(), sf::Vector2f(cosf(mi_Direction + 30 * 3.14159265 / 180) * mf_speed, sinf(mi_Direction + 30 * 3.14159265 / 180) * mf_speed), mi_size - 1, m_SpriteManager->loadSprite("asteroid01.png"));
-		m_AsteroidManager->addAsteroid(getPosition(), sf::Vector2f(cosf(mi_Direction - 30 * 3.14159265 / 180) * mf_speed, sinf(mi_Direction - 30 * 3.14159265 / 180) * mf_speed), mi_size - 1, m_SpriteManager->loadSprite("asteroid01.png"));
+		m_AsteroidManager->addAsteroid(getPosition(), sf::Vector2f(cosf(mi_Direction + 30 * 3.14159265 / 180) * mf_speed, sinf(mi_Direction + 30 * 3.14159265 / 180) * mf_speed), mi_Direction + 30, mi_size - 1, m_SpriteManager->loadSprite("asteroid01.png"));
+		m_AsteroidManager->addAsteroid(getPosition(), sf::Vector2f(cosf(mi_Direction - 30 * 3.14159265 / 180) * mf_speed, sinf(mi_Direction - 30 * 3.14159265 / 180) * mf_speed), mi_Direction - 30, mi_size - 1, m_SpriteManager->loadSprite("asteroid01.png"));
 		m_AsteroidManager->addPowerUp(getPosition(), PWRUP);
 		mb_toBeRemoved = true;
 	}

@@ -11,7 +11,7 @@ class Asteroid : public GameObject
 {
 public:
 
-	Asteroid(sf::Vector2f pv2f_position, sf::Vector2f pv2f_direction,  int pi_size, AsteroidManager* p_AsteroidManager, EObjectType pe_ObjectType, sf::Sprite *p_Sprite, SpriteManager *p_SpriteManager);
+	Asteroid(sf::Vector2f pv2f_position, sf::Vector2f pv2f_direction, int pi_direction,  int pi_size, AsteroidManager* p_AsteroidManager, EObjectType pe_ObjectType, sf::Sprite *p_Sprite, SpriteManager *p_SpriteManager);
 	
 	void update(float pf_deltaTime);
 

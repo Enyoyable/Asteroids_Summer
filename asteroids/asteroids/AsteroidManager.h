@@ -16,7 +16,7 @@ public:
 
 	void update(float pf_deltaTime);
 
-	void addAsteroid(sf::Vector2f pv2f_position, sf::Vector2f pv2f_direction, int pi_Size, sf::Sprite *p_Sprite);
+	void addAsteroid(sf::Vector2f pv2f_position, sf::Vector2f pv2f_direction, int  pi_direction, int pi_Size, sf::Sprite *p_Sprite);
 
 	void addPowerUp(sf::Vector2f pv2f_position, EObjectType pe_objectType);
 
