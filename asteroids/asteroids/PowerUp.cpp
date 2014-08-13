@@ -3,13 +3,13 @@
 #include "SpriteManager.h"
 #include "stdafx.h"
 
-PowerUp::PowerUp(sf::Vector2f pv2f_position, SpriteManager *p_SpriteManager, EObjectType pe_ObjectType)
+PowerUp::PowerUp(sf::Vector2f pv2f_position, SpriteManager *p_SpriteManager, int pi_powerType, EObjectType pe_ObjectType)
 :GameObject(pv2f_position, sf::Vector2f(32,32), PWRUP, nullptr)
 {
 	
 	srand(time(NULL));
 	//mi_powerType = rand() % 3 + 0;
-	mi_powerType = 3;
+	mi_powerType = pi_powerType;
 	m_SpriteManager = p_SpriteManager;
 	
 

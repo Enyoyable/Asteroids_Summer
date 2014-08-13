@@ -7,7 +7,7 @@ class GameObjectManager
 {
 public:
 	GameObjectManager(sf::RenderWindow *p_window);
-
+	~GameObjectManager();
 	void updateObjects(std::vector<GameObject*> *pv_Objects, float pf_DeltaTime);
 	
 	void drawObjects(std::vector<GameObject*> *pv_Objects);

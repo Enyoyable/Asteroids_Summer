@@ -6,6 +6,11 @@ GameObjectManager::GameObjectManager(sf::RenderWindow *p_window)
 	m_window = p_window;
 }
 
+GameObjectManager::~GameObjectManager()
+{
+
+}
+
 void GameObjectManager::updateObjects(std::vector<GameObject*> *pv_Objects, float pf_DeltaTime)
 {
 	int startObjectAmount = pv_Objects->size();
@@ -72,5 +77,12 @@ void GameObjectManager::removeObject(std::vector<GameObject*> *pv_Objects, GameO
 
 void GameObjectManager::cleanObjects(std::vector<GameObject*> *pv_Objects)
 {
-
+	for (auto object : *pv_Objects)
+	{
+		if (object != nullptr)
+		{
+			delete object;
+			object = nullptr;
+		}
+	}
 }

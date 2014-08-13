@@ -10,5 +10,6 @@ int main()
 	Engine engine;
 	engine.initialize();
 	engine.run();
-	engine.cleanup();
 };
+
+//NOTE: move the .cpp files and the .h files to the right folders.

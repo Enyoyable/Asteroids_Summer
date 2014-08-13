@@ -67,41 +67,6 @@ void Engine::run()
 		if (fDeltaTime > 0.1)
 			fDeltaTime = 0.1;
 
-		//Check for events.
-		sf::Event event;
-		while (m_window->pollEvent(event))
-		{
-			//Debug function for switching between states manually. NOTE: remove these.
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
-			{
-				mi_newstate = 0;
-				//change to state zero(menu) if current state is not menu
-			}
-			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
-			{
-				mi_newstate = 1;
-				//change to state one(Game) if current state is not game
-			}
-			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
-			{
-				mi_newstate = 2;
-				//change to state two(Pause) if current state is not pause
-			}
-			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4))
-			{
-				mi_newstate = 3;
-				//change to state three(End) if current state is not end
-			}
-
-			//End othe the game
-			if (event.type == sf::Event::Closed || sm_Statemanager->getCurrectState()->getShutdown())
-			{
-				sm_Statemanager->Cleanup();
-				sm_Statemanager->Quit();
-				m_window->close();
-			}
-		}
-		
 		//Update the game
 		sm_Statemanager->Update(fDeltaTime, mi_newstate);
 		
@@ -113,11 +78,41 @@ void Engine::run()
 
 		//display objects
 		m_window->display();
+
+		//Check for events.
+		sf::Event event;
+		while (m_window->pollEvent(event))
+		{
+			//End of the the game
+			if (event.type == sf::Event::Closed || sm_Statemanager->getCurrectState()->getShutdown())
+			{
+				sm_Statemanager->Cleanup();
+				sm_Statemanager->Quit();
+
+
+				if (m_Gameobjectmanager != nullptr)
+				{
+					delete m_Gameobjectmanager;
+					m_Gameobjectmanager = nullptr;
+				}
+				if (sm_Statemanager != nullptr)
+				{
+					delete sm_Statemanager;
+					m_Gameobjectmanager = nullptr;
+				}
+				if (m_CollisionManager != nullptr)
+				{
+					delete m_CollisionManager;
+					m_CollisionManager = nullptr;
+				}
+				m_window->close();
+
+				if (m_window != nullptr)
+				{
+					delete m_window;
+					m_window = nullptr;
+				}
+			}
+		}
 	}
-}
-
-//Remove everything that's left
-void Engine::cleanup()
-{
-
 }

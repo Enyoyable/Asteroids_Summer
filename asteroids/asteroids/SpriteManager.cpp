@@ -8,6 +8,10 @@ SpriteManager::SpriteManager(std::string directory)
 {
 	ms_DirectoryPath = directory;
 }
+SpriteManager::~SpriteManager()
+{
+	mm_textures.clear();
+}
 
 sf::Sprite* SpriteManager::loadSprite(std::string ps_fileName, int pi_x, int pi_y, int pi_w, int pi_h)
 {

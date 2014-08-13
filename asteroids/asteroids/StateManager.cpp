@@ -8,6 +8,18 @@ StateManager::StateManager()
 	mi_statenum = 0;
 }
 
+StateManager::~StateManager()
+{
+	for (auto state : mv_states)
+	{
+		if (state != nullptr)
+		{
+			delete state;
+			state = nullptr;
+		}
+	}
+}
+
 void StateManager::AddState(State *newstate)
 {
 	//set to go "Menu, Game, Pause, End"

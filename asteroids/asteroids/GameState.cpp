@@ -49,19 +49,25 @@ void GameState::Init()
 
 void GameState::Cleanup()
 {
-	mv_GameObjects.clear();
-	m_HUDManager->Clear();
-}
-
-
-void GameState::Pause()
-{
-
-}
-
-void GameState::Resume()
-{
-
+	if (m_AsteroidManager != nullptr)
+	{
+		delete m_AsteroidManager;
+		m_AsteroidManager = nullptr;
+	}
+	if (m_HUDManager != nullptr)
+	{
+		delete m_AsteroidManager;
+		m_AsteroidManager = nullptr;
+	}
+	for (auto object : mv_lifeObjs)
+	{
+		if (object != nullptr)
+		{
+			delete object;
+			object = nullptr;
+		}
+	}
+	m_GameObjectManager->cleanObjects(&mv_GameObjects);
 }
 
 

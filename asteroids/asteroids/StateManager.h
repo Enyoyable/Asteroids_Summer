@@ -6,6 +6,7 @@ class StateManager
 {
 public:
 	StateManager ();
+	~StateManager();
 	void AddState(State *p_newstate);
 
 	void Init();

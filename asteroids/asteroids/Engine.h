@@ -11,7 +11,6 @@ public:
 
 	void initialize();
 	void run();
-	void cleanup();
 
 	//The window the game uses
 	sf::RenderWindow *m_window;

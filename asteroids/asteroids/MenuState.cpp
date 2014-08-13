@@ -35,7 +35,13 @@ void MenuState::Init()
 
 void MenuState::Cleanup()
 {
-	mv_GameObjects.clear();
+	if (mo_Background != nullptr)
+	{
+		delete mo_Background;
+		mo_Background = nullptr;
+	}
+
+	m_GameObjectManager->cleanObjects(&mv_GameObjects);
 }
 
 

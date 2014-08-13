@@ -37,7 +37,12 @@ void PauseState::Init()
 
 void PauseState::Cleanup()
 {
-	mv_GameObjects.clear();
+	if (mo_pausedText != nullptr)
+	{
+		delete mo_pausedText;
+		mo_pausedText = nullptr;
+	}
+	m_GameObjectManager->cleanObjects(&mv_GameObjects);
 }
 
 

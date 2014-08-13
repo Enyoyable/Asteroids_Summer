@@ -12,8 +12,6 @@ public:
 	void Init();
 	void Update(float pf_deltaTime);
 
-	
-
 	void Cleanup();
 	void Pause();
 	void Resume();

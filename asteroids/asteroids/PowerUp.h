@@ -11,7 +11,7 @@ class SpriteManager;
 class PowerUp : public GameObject
 {
 public:
-	PowerUp(sf::Vector2f pv2f_position, SpriteManager *p_SpriteManager, EObjectType pe_ObjectType);
+	PowerUp(sf::Vector2f pv2f_position, SpriteManager *p_SpriteManager, int powerType, EObjectType pe_ObjectType);
 	
 	void update(float pf_deltatime);
 	

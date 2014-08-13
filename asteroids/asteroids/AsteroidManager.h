@@ -1,4 +1,4 @@
-//This class have been upfraded to handle powerups and eventual enemies.
+//This class have been modified to also handle powerups.
 #pragma once
 #include "stdafx.h"
 #include "GameObject.h"
@@ -13,7 +13,7 @@ class AsteroidManager
 public:
 	
 	AsteroidManager(std::vector<GameObject*> *pv_GameObjects, SpriteManager* p_SpriteManager, GameState *p_GameState);
-
+	
 	void update(float pf_deltaTime);
 
 	void addAsteroid(sf::Vector2f pv2f_position, sf::Vector2f pv2f_direction, int  pi_direction, int pi_Size, sf::Sprite *p_Sprite);

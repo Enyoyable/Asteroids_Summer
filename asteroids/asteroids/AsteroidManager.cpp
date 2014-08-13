@@ -25,7 +25,7 @@ void AsteroidManager::update(float pf_deltaTime)
 {
 	srand(time(NULL));
 	mf_spawnTimer += pf_deltaTime;
-	if (mf_spawnTimer > 1 * mi_Difficulty && mi_AsteroidAmount < 5)
+	if (mf_spawnTimer > 2 * mi_Difficulty && mi_AsteroidAmount < 5)
 	{
 		int Side = rand() % 4 + 0;
 		float posX;
@@ -62,15 +62,27 @@ void AsteroidManager::addAsteroid(sf::Vector2f pv2f_position, sf::Vector2f pv2f_
 	if (pi_Size > 0)
 	{
 		mv_GameObjects->push_back(new Asteroid(pv2f_position, pv2f_direction, pi_direction, pi_Size, this, ROCK, p_Sprite, m_SpriteManager));
+		mi_AsteroidAmount += 1;
+	}
+	else
+	{
+		mi_AsteroidAmount -= 1;
 	}
 	
 }
 
 void AsteroidManager::addPowerUp(sf::Vector2f pv2f_position, EObjectType pe_objectType)
 {
+	int spawn = rand() % 10 + 1;
+
+	if (spawn > 3)
+	{
+		return;
+	}
+
 	if (mi_PowerUpsAmount < 3)
 	{
-		mv_GameObjects->push_back(new PowerUp(pv2f_position, m_SpriteManager, pe_objectType));
+		mv_GameObjects->push_back(new PowerUp(pv2f_position, m_SpriteManager, spawn, pe_objectType));
 		mi_PowerUpsAmount;
 	}
 }
