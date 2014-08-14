@@ -42,8 +42,9 @@ void GameObjectManager::drawObjects(std::vector<GameObject*> *pv_Objects)
 {
 	for (auto object : *pv_Objects)
 	{
-		if (object->getSprite() != nullptr)
+		if (object != nullptr && object->getSprite() != nullptr)
 		{
+			//NOTE: remove all cout
 			//std::cout << object->getSprite()->getTextureRect().height << " " << object->getSprite()->getTextureRect().width << std::endl;
 			m_window->draw(*object);
 		}
@@ -79,10 +80,6 @@ void GameObjectManager::cleanObjects(std::vector<GameObject*> *pv_Objects)
 {
 	for (auto object : *pv_Objects)
 	{
-		if (object != nullptr)
-		{
-			delete object;
-			object = nullptr;
-		}
+		removeObject(pv_Objects, object);
 	}
 }

@@ -28,6 +28,11 @@ GameObject::GameObject(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, EObje
 	mb_toBeRemoved = false;
 }
 
+GameObject::~GameObject()
+{
+
+}
+
 void GameObject::update(float pf_deltaTime)
 {
 	//If the object moves or rotates, move the sprite along with it

@@ -19,7 +19,7 @@ public:
 	
 	//Create new instance of GameObject. Many other lcasses inherit from this class.
 	GameObject(sf::Vector2f pv2f_Position, sf::Vector2f pv2f_Size, EObjectType pe_ObjectType,sf::Sprite *p_Sprite = nullptr);
-
+	~GameObject();
 	//Update object
 	virtual void update(float pf_deltaTime);
 

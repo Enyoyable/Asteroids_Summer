@@ -37,12 +37,12 @@ void EndState::Init()
 
 void EndState::Cleanup()
 {
-	if (mo_youDiedText != nullptr)
+	m_GameObjectManager->removeObject(&mv_GameObjects, mo_youDiedText);
+	/*if (mo_youDiedText != nullptr)
 	{
 		delete mo_youDiedText;
 		mo_youDiedText = nullptr;
-	}
-	m_GameObjectManager->cleanObjects(&mv_GameObjects);
+	}*/
 }
 
 
