@@ -25,7 +25,7 @@ public:
 	//What to do when colliding with object
 	void HandleCollision(GameObject *p_GameObject);
 
-	//Special handle for powerups. May be unnecessary. NOTE: might wanna put this back in the normal handlecollision
+	//Special handle for powerups.
 	void HandleCollision(PowerUp *p_PowerUp);
 
 private:

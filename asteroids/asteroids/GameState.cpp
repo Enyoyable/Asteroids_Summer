@@ -36,9 +36,6 @@ void GameState::Init()
 	mi_score = 0;
 	mi_lives = 1;
 
-	std::cout << "Initialized ";
-	std::cout << ms_statename << std::endl;
-
 	mf_stateClock = 0.0f;
 
 	addPlayer();
@@ -95,6 +92,18 @@ void GameState::Update(float pf_deltaTime)
 	if (mv_lifeObjs.size() > mi_lives)
 	{
 		mv_lifeObjs.erase(mv_lifeObjs.begin() + mv_lifeObjs.size() -1);
+	}
+
+	//Pause the game.
+	//Swapping between the game and pause state has a 1 second cooldown to prevent flickering when holding the button down for more than one frame
+	if (getStateClock() > 1)
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+		{
+			setNewstate(2);
+			resetStateclock();
+			return;
+		}
 	}
 }
 

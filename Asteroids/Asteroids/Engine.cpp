@@ -26,8 +26,6 @@ Engine::~Engine()
 //Initialize the engine
 void Engine::initialize()
 {
-	std::cout << "Program start" << std::endl;
-
 	//Set up the window
 	m_window = new sf::RenderWindow(sf::VideoMode(1200, 900), "Asteroids");
 	sf::Vector2u size = m_window->getSize();

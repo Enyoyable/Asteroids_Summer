@@ -24,9 +24,6 @@ PauseState::PauseState(GameObjectManager *p_GameObjectManager, StateManager *p_S
 
 void PauseState::Init()
 {
-	std::cout << "Initialized ";
-	std::cout << ms_statename << std::endl;
-
 	mf_stateClock = 0.0f;
 
 	mo_pausedText = new GameObject(sf::Vector2f(200, 200), sf::Vector2f(800, 413), BACK, m_SpriteManager->loadSprite("pause.png", 0, 0, 800, 413));

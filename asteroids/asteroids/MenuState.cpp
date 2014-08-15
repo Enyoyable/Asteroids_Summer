@@ -25,9 +25,6 @@ MenuState::MenuState(GameObjectManager *p_GameObjectManager, StateManager *p_Sta
 
 void MenuState::Init()
 {
-	std::cout << "Initialized ";
-	std::cout << ms_statename << std::endl;
-
 	mo_Background = new GameObject(sf::Vector2f(0,0), sf::Vector2f(1200, 900), BACK, m_SpriteManager->loadSprite("BG01.png", 0,0,1200,900));
 	mo_Background->getSprite()->setOrigin(0, 0);
 	mv_GameObjects.push_back(mo_Background);

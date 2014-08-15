@@ -40,7 +40,6 @@ Asteroid::Asteroid(sf::Vector2f pv2f_position, sf::Vector2f pv2f_direction, int 
 	{
 		mi_Direction = (rand() % 361 + 0);
 
-		std::cout << mi_Direction << std::endl;
 		setRotation(mi_Direction);
 
 		mv2f_direction = sf::Vector2f(cosf(mi_Direction * 3.14159265 / 180) * mf_speed, sinf(mi_Direction * 3.14159265 / 180) * mf_speed);

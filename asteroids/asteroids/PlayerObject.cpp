@@ -55,7 +55,6 @@ void PlayerObject::update(float pf_deltaTime)
 			if (m_GameState->getLives() <= 0)
 			{
 				//Exits the game state
-				std::cout << "DEAD" << std::endl;
 				m_GameState->setNewstate(3);
 			}
 			else
@@ -67,19 +66,6 @@ void PlayerObject::update(float pf_deltaTime)
 			}
 		}
 		return;
-	}
-
-	
-	//Pause the game NOTE: Might movie this into gamestate
-	//Swapping between the game and pause state has a 1 second cooldown to prevent flickering when holding the button down for more than one frame
-	if (m_GameState->getStateClock() > 1)
-	{
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
-		{
-			m_GameState->setNewstate(2);
-			m_GameState->resetStateclock();
-			return;
-		}
 	}
 
 	//Shoots if the cooldown is finished
@@ -202,7 +188,6 @@ void PlayerObject::HandleCollision(GameObject *p_GameObject)
 	//what to do when player hits an asteroid and isn't in the death cycle
 	if (p_GameObject->getType() == ROCK && mb_inDeathCycle == false)
 	{
-		std::cout << "player hit" << std::endl;
 		//Puts player in death cycle, decreases lives by one and sets the current frame to 1
 		mb_inDeathCycle = true;
 		m_GameState->setLives(m_GameState->getLives() - 1);
@@ -212,10 +197,17 @@ void PlayerObject::HandleCollision(GameObject *p_GameObject)
 
 void PlayerObject::HandleCollision(PowerUp *p_PowerUp)
 {
-	//What to do when hittign a powerup.
+	//What to do when hitting a powerup.
+	if (mi_currentPowerUp == 3)
+	{
+		//number 3 is an extra life and therefore does not modify current powerup or timer
+		m_GameState->setLives(m_GameState->getLives() + 1);
+		return;
+	}
+	
 	//sets current powerup to the corresponding number in the other object
 	mi_currentPowerUp = p_PowerUp->getPowerType();
-	//sets the time the specific powerups will be active. NOTE: Is reset when picking up an extra life
+	//sets the time the specific powerups will be active.
 	if (mi_currentPowerUp == 1)
 	{
 		mf_powerupTimer = 3;
@@ -223,11 +215,5 @@ void PlayerObject::HandleCollision(PowerUp *p_PowerUp)
 	else if (mi_currentPowerUp == 2)
 	{
 		mf_powerupTimer = 10;
-	}
-	else if (mi_currentPowerUp == 3)
-	{
-		//number 3 is an extra life and therefore does not modify current powerup or timer
-		m_GameState->setLives(m_GameState->getLives() + 1);
-		mi_currentPowerUp = 0;
 	}
 }

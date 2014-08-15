@@ -26,9 +26,6 @@ EndState::EndState(GameObjectManager *p_GameObjectManager, StateManager *p_State
 
 void EndState::Init()
 {
-	std::cout << "Initialized ";
-	std::cout << ms_statename << std::endl;
-
 	mo_youDiedText = new GameObject(sf::Vector2f(200, 200), sf::Vector2f(800, 413), BACK, m_SpriteManager->loadSprite("gameover.png", 0, 0, 800, 413));
 	mo_youDiedText->setOrigin(0,0);
 	mo_youDiedText->getSprite()->setOrigin(0,0);

@@ -44,8 +44,6 @@ void GameObjectManager::drawObjects(std::vector<GameObject*> *pv_Objects)
 	{
 		if (object != nullptr && object->getSprite() != nullptr)
 		{
-			//NOTE: remove all cout
-			//std::cout << object->getSprite()->getTextureRect().height << " " << object->getSprite()->getTextureRect().width << std::endl;
 			m_window->draw(*object);
 		}
 	}
@@ -56,7 +54,6 @@ void GameObjectManager::drawHUD(std::vector<sf::Text*> *pv_HUD)
 	for (auto object : *pv_HUD)
 	{
 		{
-			//std::cout << object->getSprite()->getTextureRect().height << " " << object->getSprite()->getTextureRect().width << std::endl;
 			m_window->draw(*object);
 		}
 	}

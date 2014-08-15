@@ -30,9 +30,6 @@ public:
 	void setSprite(sf::Sprite *p_Sprite);
 	sf::Sprite *getSprite();
 
-	//setType for changing the object type may not be needed NOTE: potentially remove
-	//void setType(EObjectType pe_ObjectType);
-
 	//What to do when colliding with another object
 	virtual void HandleCollision(GameObject *p_GameObject);
 
