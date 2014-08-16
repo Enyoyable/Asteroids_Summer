@@ -38,6 +38,9 @@ private:
 	float mf_velocity;
 	float mf_fireCooldown;
 	float mf_powerupTimer;
+	float mf_invincTimer;
+	float mf_blinkTimer;
+	bool mb_blinkDir;
 
 	GameState *m_GameState;
 	SpriteManager *m_SpriteManager;

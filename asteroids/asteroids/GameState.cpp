@@ -34,7 +34,7 @@ GameState::GameState(GameObjectManager *p_GameObjectManager, StateManager *p_Sta
 void GameState::Init()
 {
 	mi_score = 0;
-	mi_lives = 1;
+	mi_lives = 3;
 
 	mf_stateClock = 0.0f;
 

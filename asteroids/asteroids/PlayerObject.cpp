@@ -19,6 +19,9 @@ PlayerObject::PlayerObject(sf::Vector2f position, sf::Vector2f pv2f_Size, GameSt
 	mf_fireCooldown = 0.0f;
 	mf_powerupTimer = 0.0f;
 	mi_currentPowerUp = 0;
+	mf_invincTimer = 0.0f;
+	mf_blinkTimer = -0.07f;
+	mb_blinkDir = true;
 
 	//set pointer variables
 	m_GameState = p_GameState;
@@ -63,6 +66,7 @@ void PlayerObject::update(float pf_deltaTime)
 				setPosition(600, 450);
 				m_animatedSprite->pause();
 				mb_inDeathCycle = false;
+				mf_invincTimer = 2.0f;
 			}
 		}
 		return;
@@ -141,6 +145,36 @@ void PlayerObject::update(float pf_deltaTime)
 	else if (mf_velocity < 0.00f)
 		mf_velocity += 0.001f;
 
+	//flashing invincibility
+	if (mf_invincTimer > 0.0f)
+	{
+		if (mb_blinkDir)
+		{
+			mf_blinkTimer -= pf_deltaTime;
+
+			if (mf_blinkTimer <= -0.07f)
+			{
+				mb_blinkDir = false;
+			}
+		}
+		else if (!mb_blinkDir)
+		{
+			mf_blinkTimer += pf_deltaTime;
+
+			if (mf_blinkTimer >= 0.07f)
+			{
+				mb_blinkDir = true;
+			}
+		}
+
+		mf_invincTimer -= pf_deltaTime;
+	}
+	else
+	{
+		mf_invincTimer = 0.0f;
+		mf_blinkTimer = 0.7f;
+	}
+
 
 	//Screen warp. makes sure the player reappears on the right parts of the screen. Same code used in asteroids and player shots.
 	if (getPosition().x > 1232 && mv2f_Speed.x > 0.0f)
@@ -177,16 +211,20 @@ void PlayerObject::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	//draw the animatedsprite which is set to not animate unless player is in death cycle.
 	//basically the same as drawing a single sprite
-	if (m_Sprite != nullptr)
+	if (mf_blinkTimer >= 0.0f)
 	{
-		target.draw(*m_animatedSprite, states);
+		if (m_Sprite != nullptr)
+		{
+			target.draw(*m_animatedSprite, states);
+		}
 	}
+	
 }
 
 void PlayerObject::HandleCollision(GameObject *p_GameObject)
 {
 	//what to do when player hits an asteroid and isn't in the death cycle
-	if (p_GameObject->getType() == ROCK && mb_inDeathCycle == false)
+	if (p_GameObject->getType() == ROCK && mb_inDeathCycle == false && mf_invincTimer == 0.0f)
 	{
 		//Puts player in death cycle, decreases lives by one and sets the current frame to 1
 		mb_inDeathCycle = true;
